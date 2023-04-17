@@ -34,13 +34,11 @@ export default function FilterCard() {
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
       window.addEventListener("resize", handleResizeWindow);
-    }
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
     };
-  }, [window]);
+  }, []);
 
   return (
     <div className={`${filterMenuOpen ? 'block':'hidden'} w-full fixed bottom-0  md:relative md:max-w-[17rem] md:mr-12 z-50 bg-white pt-7 md:pt-0 px-10 md:px-0 h-5/6 md:h-fit`}>
