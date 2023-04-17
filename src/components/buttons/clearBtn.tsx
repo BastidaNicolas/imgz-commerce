@@ -1,6 +1,6 @@
-export default function ClearBtn() {
+export default function ClearBtn({setState, value}:any) {
     return (
-      <button className='w-full text-lg text-black bg-white py-2.5 px-8 font-medium  border-[3px] border-black'>
+      <button onClick={() => setState(value)} className='w-full text-lg text-black bg-white py-2.5 px-8 font-medium  border-[3px] border-black'>
         CLEAR
       </button>
     )

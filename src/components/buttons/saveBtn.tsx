@@ -1,6 +1,6 @@
-export default function SaveBtn() {
+export default function SaveBtn({handleFunc}:any) {
     return (
-      <button className='w-full text-lg bg-black text-white py-2.5 px-8 font-medium'>
+      <button onClick={handleFunc} className='w-full text-lg bg-black text-white py-2.5 px-8 font-medium'>
         SAVE
       </button>
     )
