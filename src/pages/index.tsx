@@ -13,7 +13,7 @@ export default function Home() {
   
   const [filters, setFilters] = useState([]);
   const filterValue: any = useMemo(() => ({ filters, setFilters }), [filters]);
-  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+  const [filterMenuOpen, setFilterMenuOpen] = useState(true);
   const filterMenuOpenValue: any = useMemo(() => ({ filterMenuOpen, setFilterMenuOpen }),[filterMenuOpen]);
 
   return (
