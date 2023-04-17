@@ -9,25 +9,25 @@ export default function CardXl() {
         <div className="w-full bottom-0 col-start-1 col-end-11 lg:col-start-9 lg:col-end-11 row-span-1 row-start-3 row-end-4 lg:row-start-1 lg:row-end-2">
           <AddBtn></AddBtn>
         </div>
-        <div className="relative h-[34.563rem] w-full col-span-10 row-span-2 row-start-2 row-end-3 lg:row-start-2 lg:row-end-3">
+        <div className="relative h-[14.938rem] md:h-[34.563rem] w-full col-span-10 row-span-2 row-start-2 row-end-3 lg:row-start-2 lg:row-end-3">
           <Image
             className="object-cover"
             src={"https://i.imgur.com/LANAaYd.jpg"}
             alt="image"
             fill
           ></Image>
-          <div className="absolute bg-white z-10 text-xl py-5 px-14 bottom-0 left-0">
+          <div className="absolute bg-white z-10 text-base md:text-xl py-5 px-14 bottom-0 left-0">
             Photo of the day
           </div>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="">
-          <div className="font-bold text-xl mb-4 truncate">
+          <div className="font-bold text-xl mb-8 mb:mb-4 truncate">
             About the Samurai King Resting
           </div>
-          <div className="font-bold text-xl mb-4 text-neutral-600">Pets</div>
-          <p className="text-lg mb-4 text-neutral-600 max-w-[43.125rem]">
+          <div className="hidden md:block font-bold text-xl mb-4 text-neutral-600">Pets</div>
+          <p className="text-lg mb-8 mb:mb-4 text-neutral-600 max-w-[43.125rem]">
             So how did the classical Latin become so incoherent? According to
             McClintock, a 15th century typesetter likely scrambled part of
             Cicero's De Finibus in order to provide placeholder text to mockup
@@ -39,10 +39,10 @@ export default function CardXl() {
             to McClintock.
           </p>
         </div>
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-start lg:items-end">
           <div className="font-bold text-xl mb-8 truncate">People also buy</div>
-          <div className="flex mb-14" >
-            <div className="relative ml-8 w-[7.313rem] h-[9.188rem]">
+          <div className="w-full flex mb-14 justify-start lg:justify-end" >
+            <div className="relative mr-7 lg:mr-0 ml-0 lg:ml-8 w-[6.098rem] md:w-[7.313rem] h-[7.661rem] md:h-[9.188rem]">
               <Image
                 className="object-cover"
                 src={"https://i.imgur.com/LANAaYd.jpg"}
@@ -50,7 +50,7 @@ export default function CardXl() {
                 fill
               ></Image>
             </div>
-            <div className="relative ml-8 w-[7.313rem] h-[9.188rem]">
+            <div className="relative mr-7 lg:mr-0 ml-0 lg:ml-8 w-[6.098rem] md:w-[7.313rem] h-[7.661rem] md:h-[9.188rem]">
               <Image
                 className="object-cover"
                 src={"https://i.imgur.com/LANAaYd.jpg"}
@@ -58,7 +58,7 @@ export default function CardXl() {
                 fill
               ></Image>
             </div>
-            <div className="relative ml-8 w-[7.313rem] h-[9.188rem]">
+            <div className="relative mr-7 lg:mr-0 ml-0 lg:ml-8 w-[6.098rem] md:w-[7.313rem] h-[7.661rem] md:h-[9.188rem]">
               <Image
                 className="object-cover"
                 src={"https://i.imgur.com/LANAaYd.jpg"}
@@ -68,10 +68,10 @@ export default function CardXl() {
             </div>
           </div>
           <div className="font-bold text-xl mb-4 truncate">Details</div>
-          <div className="text-base mb-4 text-neutral-600">
+          <div className="text-xl mb:text-base mb-4 text-neutral-600">
             Size: 1020 x 1020 pixel
           </div>
-          <div className="text-base text-neutral-600">Size: 15 mb</div>
+          <div className="text-xl mb:text-base text-neutral-600">Size: 15 mb</div>
         </div>
       </div>
     </div>

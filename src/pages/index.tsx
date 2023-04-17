@@ -25,11 +25,11 @@ export default function Home() {
       <FilterContext.Provider value={filterValue}>
         <FiltersOpenContext.Provider value={filterMenuOpenValue}>
           <section className="w-full">
-            <div className="flex justify-between mb-11">
-              <div className="flex items-center">
-                <div className="font-bold text-3xl">Photography</div>
-                <div className="font-bold text-4xl mx-2 ">/</div>
-                <div className="text-3xl text-neutral-400">Premium Photos</div>
+            <div className="flex items-center justify-between mb-11">
+              <div className="flex items-center flex-flow truncate">
+                <div className="font-bold text-lg md:text-3xl">Photography</div>
+                <div className="font-bold text-3xl md:text-4xl mx-2 ">/</div>
+                <div className="text-lg md:text-3xl text-neutral-400 truncate">Premium Photos</div>
               </div>
               <div>
                 
