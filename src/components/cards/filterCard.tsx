@@ -34,6 +34,7 @@ export default function FilterCard() {
   };
 
   useEffect(() => {
+      handleResizeWindow();
       window.addEventListener("resize", handleResizeWindow);
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
