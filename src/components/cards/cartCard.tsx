@@ -20,9 +20,9 @@ export default function CartCard({ isOpen, setIsOpen }: any) {
         <CardSm></CardSm>
         <CardSm></CardSm>
       </div>
-      <div className="w-full flex">
+      <div className="w-full flex flex-col md:flex-row">
         <ClearBtn></ClearBtn>
-        <div className="mx-2.5"></div>
+        <div className="mb-1 md:mx-2.5"></div>
         <PayBtn></PayBtn>
       </div>
     </div>

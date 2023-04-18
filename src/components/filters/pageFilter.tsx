@@ -34,7 +34,7 @@ export default function PageFilter({ option }: any) {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_768_2)">
+          <g clipPath="url(#clip0_768_2)">
             <path d="M5 17L13 9L5 1" stroke="black" strokeWidth="3" />
           </g>
           <defs>
