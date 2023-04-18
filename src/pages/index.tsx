@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import { useMemo, useState } from "react";
 import { FilterContext, FiltersOpenContext } from "@/helpers/context";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
+import OrderFilter from "@/components/filters/orderFilter";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -32,7 +33,7 @@ export default function Home() {
                 <div className="text-lg md:text-3xl text-neutral-400 truncate">Premium Photos</div>
               </div>
               <div>
-                
+                <OrderFilter></OrderFilter>
                 <ToggleFilterBtn></ToggleFilterBtn>
               </div>
             </div>
