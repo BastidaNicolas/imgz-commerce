@@ -10,7 +10,7 @@ export default function OrderFilter({ option }: any) {
           xmlns="http://www.w3.org/2000/svg"
           className="mr-2"
         >
-          <g clip-path="url(#clip0_122_13)">
+          <g clipPath="url(#clip0_122_13)">
             <path
               d="M3.64807 14.3734V1.5347L5.90435 3.79098C5.97793 3.86456 6.07296 3.90134 6.17106 3.90134C6.26916 3.90134 6.36419 3.86456 6.43777 3.79098C6.58492 3.64383 6.58492 3.40778 6.43777 3.26063L3.54077 0.363637C3.39976 0.222619 3.15144 0.222619 3.01042 0.363637L0.110362 3.26063C-0.0367873 3.40778 -0.0367873 3.64383 0.110362 3.79098C0.257511 3.93813 0.493562 3.93813 0.640711 3.79098L2.897 1.5347V14.3734C2.897 14.5819 3.0656 14.7505 3.27407 14.7505C3.47946 14.7474 3.64807 14.5788 3.64807 14.3734Z"
               fill="black"
@@ -44,7 +44,7 @@ export default function OrderFilter({ option }: any) {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M4 8L12 16L20 8" stroke="black" stroke-width="3" />
+          <path d="M4 8L12 16L20 8" stroke="black" strokeWidth="3" />
         </svg>
       </button>
     </div>

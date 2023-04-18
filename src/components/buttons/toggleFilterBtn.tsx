@@ -6,7 +6,7 @@ export default function ToggleFilterBtn() {
   const {filterMenuOpen, setFilterMenuOpen}:any = useContext(FiltersOpenContext);
 
   return (
-    <button className="block md:hidden" onClick={() => setFilterMenuOpen(!filterMenuOpen)}>
+    <button className="block lg:hidden" onClick={() => setFilterMenuOpen(!filterMenuOpen)}>
       <svg
         width="29"
         height="29"
