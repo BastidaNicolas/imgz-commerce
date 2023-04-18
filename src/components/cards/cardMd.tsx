@@ -3,7 +3,7 @@ import AddBtn from "../buttons/addBtn";
 
 export default function CardMd() {
   return (
-    <div className="group flex flex-col w-full max-w-[17.625rem]">
+    <div className="group flex flex-col w-full lg:max-w-[17.625rem]">
       <div className="relative h-[24.875rem] w-full mb-3">
         <div className="absolute bg-white z-10 text-xl py-1 px-3">
           Best Seller
