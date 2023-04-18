@@ -71,7 +71,7 @@ export default function FilterCard() {
       <div
         className={`${
           filterMenuOpen ? "flex" : "hidden"
-        } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 `}
+        } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
       >
         <ClearBtn setState={setFilters} value={['']} ></ClearBtn>
         <div className="mx-2.5" ></div>
