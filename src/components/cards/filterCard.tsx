@@ -5,6 +5,7 @@ import ExitBtn from "../buttons/exitBtn";
 import { FilterContext, FiltersOpenContext } from "@/helpers/context";
 import ClearBtn from "../buttons/clearBtn";
 import SaveBtn from "../buttons/saveBtn";
+import OrderFilter from "../filters/orderFilter";
 
 const category = {
   name: "category",
@@ -62,6 +63,9 @@ export default function FilterCard() {
         </div>
         <div className="w-full h-full lg:h-fit overflow-y-auto">
           <div className="w-full">
+            <div className="lg:hidden my-4 lg:my-0">
+              <OrderFilter></OrderFilter>
+            </div>
             <MultiSelect option={category}></MultiSelect>
             <div className="border-b border-neutral-300 mb-8"></div>
             <SingleSelect option={priceRange}></SingleSelect>

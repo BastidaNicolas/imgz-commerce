@@ -1,7 +1,25 @@
+import { ProductListContext } from "@/helpers/context";
+import { useContext, useEffect, useState } from "react";
+
 export default function OrderFilter({ option }: any) {
+
+  const [ascending, setAscending] = useState<boolean>(false)
+  const [byWhat, setByWhat] = useState<string>('price')
+
+  const {productList, setProductList}:any = useContext(ProductListContext)
+
+  const handleOrder = (byWhat:string, ascending:boolean, productList:any, setProductList:any) => {
+    console.log(byWhat, ascending)
+    return;
+  }
+
+  useEffect(() => {
+    handleOrder(byWhat, ascending, productList, setProductList);
+  },[byWhat, ascending])
+
   return (
-    <div className="flex items-center text-xl">
-      <div className="flex items-center text-neutral-500 pr-3.5">
+    <div className="flex items-center text-xl w-full justify-between">
+      <div className="flex items-center text-neutral-500 pr-3.5 truncate">
         <svg
           width="15"
           height="15"
@@ -28,25 +46,28 @@ export default function OrderFilter({ option }: any) {
         </svg>
         Sort By
       </div>
-      <select className="appearance-none bg-white block pr-2 focus:outline-none">
-        <option className="appearance-none" value="">
+      <div className="flex items-center">
+      <select className="appearance-none bg-white block pr-2 focus:outline-none" value={byWhat} onChange={(e) => setByWhat(e.target.value)} >
+        <option className="appearance-none" value="price">
           Price
         </option>
-        <option className="appearance-none" value="">
+        <option className="appearance-none" value="name">
           Name
         </option>
       </select>
-      <button>
+      <button onClick={() => setAscending(!ascending)} >
         <svg
           width="24"
           height="24"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={`${!ascending && 'rotate-180'}`}
         >
           <path d="M4 8L12 16L20 8" stroke="black" strokeWidth="3" />
         </svg>
       </button>
+      </div>
     </div>
   );
 }

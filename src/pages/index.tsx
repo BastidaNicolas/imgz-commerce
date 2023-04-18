@@ -41,45 +41,47 @@ export default function Home() {
     >
       <CartListContext.Provider value={cartListMemo}>
         <Header></Header>
+        <ProductListContext.Provider value={productListMemo}>
+          <CardXl></CardXl>
+          <FilterContext.Provider value={filterValue}>
+            <FiltersOpenContext.Provider value={filterMenuOpenValue}>
+              <section className="w-full">
+                <div className="flex items-center justify-between mb-11">
+                  <div className="flex items-center flex-flow truncate">
+                    <div className="font-bold text-lg md:text-3xl">
+                      Photography
+                    </div>
+                    <div className="font-bold text-3xl md:text-4xl mx-2 ">
+                      /
+                    </div>
+                    <div className="text-lg md:text-3xl text-neutral-400 truncate">
+                      Premium Photos
+                    </div>
+                  </div>
+                  <div className="hidden lg:block w-min">
+                    <OrderFilter></OrderFilter>
+                  </div>
+                  <ToggleFilterBtn></ToggleFilterBtn>
+                </div>
+                <div className="flex ">
+                  <FilterCard></FilterCard>
+                  <div className="w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
+                      <CardMd></CardMd>
+                      <CardMd></CardMd>
+                      <CardMd></CardMd>
+                      <CardMd></CardMd>
+                      <CardMd></CardMd>
+                      <CardMd></CardMd>
+                    </div>
+                    <div className="text-center">1 2 3</div>
+                  </div>
+                </div>
+              </section>
+            </FiltersOpenContext.Provider>
+          </FilterContext.Provider>
+        </ProductListContext.Provider>
       </CartListContext.Provider>
-      <ProductListContext.Provider value={productListMemo}>
-        <CardXl></CardXl>
-        <FilterContext.Provider value={filterValue}>
-          <FiltersOpenContext.Provider value={filterMenuOpenValue}>
-            <section className="w-full">
-              <div className="flex items-center justify-between mb-11">
-                <div className="flex items-center flex-flow truncate">
-                  <div className="font-bold text-lg md:text-3xl">
-                    Photography
-                  </div>
-                  <div className="font-bold text-3xl md:text-4xl mx-2 ">/</div>
-                  <div className="text-lg md:text-3xl text-neutral-400 truncate">
-                    Premium Photos
-                  </div>
-                </div>
-                <div className="hidden lg:block">
-                  <OrderFilter></OrderFilter>
-                </div>
-                <ToggleFilterBtn></ToggleFilterBtn>
-              </div>
-              <div className="flex ">
-                <FilterCard></FilterCard>
-                <div className="w-full">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
-                    <CardMd></CardMd>
-                    <CardMd></CardMd>
-                    <CardMd></CardMd>
-                    <CardMd></CardMd>
-                    <CardMd></CardMd>
-                    <CardMd></CardMd>
-                  </div>
-                  <div className="text-center">1 2 3</div>
-                </div>
-              </div>
-            </section>
-          </FiltersOpenContext.Provider>
-        </FilterContext.Provider>
-      </ProductListContext.Provider>
     </main>
   );
 }
