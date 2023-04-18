@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import MultiSelect from "../filters/multiSelect";
 import SingleSelect from "../filters/singleSelect";
 import ExitBtn from "../buttons/exitBtn";
@@ -42,7 +42,9 @@ export default function FilterCard() {
   };
 
   useEffect(() => {
-    handleResizeWindow();
+    if (window.innerWidth >= 1024) {
+      handleResizeWindow()
+    }
     window.addEventListener("resize", handleResizeWindow);
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
