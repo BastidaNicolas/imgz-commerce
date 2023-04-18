@@ -13,6 +13,7 @@ import FilterCard from "@/components/cards/filterCard";
 import Header from "@/components/header";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
+import PageFilter from "@/components/filters/pageFilter";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -74,7 +75,7 @@ export default function Home() {
                       <CardMd></CardMd>
                       <CardMd></CardMd>
                     </div>
-                    <div className="text-center">1 2 3</div>
+                    <PageFilter></PageFilter>
                   </div>
                 </div>
               </section>
