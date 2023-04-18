@@ -1,21 +1,17 @@
 import { Archivo } from "next/font/google";
 import CardMd from "@/components/cards/cardMd";
 import CardXl from "@/components/cards/cardXl";
-// import FilterCard from "@/components/cards/filterCard";
+import FilterCard from "@/components/cards/filterCard";
 import Header from "@/components/header";
 import { useMemo, useState } from "react";
 import { FilterContext, FiltersOpenContext } from "@/helpers/context";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
-import dynamic from "next/dynamic";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export default function Home() {
 
-  const FilterCard = dynamic(() => import("../components/cards/filterCard"),{
-    ssr: false,
-  })
   
   const [filters, setFilters] = useState([]);
   const filterValue: any = useMemo(() => ({ filters, setFilters }), [filters]);

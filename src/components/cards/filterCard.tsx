@@ -42,9 +42,7 @@ export default function FilterCard() {
   };
 
   useEffect(() => {
-    if (window.innerWidth >= 1024) {
       handleResizeWindow()
-    }
     window.addEventListener("resize", handleResizeWindow);
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
