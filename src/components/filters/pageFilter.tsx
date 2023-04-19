@@ -1,7 +1,27 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
 export default function PageFilter({ option }: any) {
+
+  const router = useRouter();
+ 
+  const [page, setPage] = useState<number>(2)
+
+  const changePage = () => {
+    router.push({
+      pathname: '/',
+      query: { page: page }
+    }, undefined, { shallow: true })
+
+  }
+
+  useEffect(() => {
+    changePage()
+  }, [page])
+
   return (
     <div className="flex items-center justify-center mb-14">
-      <button>
+      <button className={page === 1 ? 'hidden':''} onClick={() => setPage(page -1)}>
         <svg
           width="18"
           height="18"
@@ -21,12 +41,12 @@ export default function PageFilter({ option }: any) {
       </button>
       <div className="flex items-center mx-3.5 md:mx-5 overflow-x-auto">
         {/* MAKE MARGIN NOT APEAR IF IT'S THE LAST NUMBER, ALSO ADJUST COLOR AND WEIGHT BASED ON IF IT IS THE CURRENT PAGE*/}
-        <button className="text-3xl font-bold text-black mr-3.5 md:mr-5">1</button>
-        <button className="text-3xl text-neutral-400 mr-3.5 md:mr-5">2</button>
-        <button className="text-3xl text-neutral-400 mr-3.5 md:mr-5">3</button>
-        <button className="text-3xl text-neutral-400 ">4</button>
+        <button className={page === 1 ? 'text-3xl font-bold text-black mr-3.5 md:mr-5':"text-3xl text-neutral-400 mr-3.5 md:mr-5"} onClick={changePage} >1</button>
+        <button className={page === 2 ? 'text-3xl font-bold text-black mr-3.5 md:mr-5':"text-3xl text-neutral-400 mr-3.5 md:mr-5"}>2</button>
+        <button className={page === 3 ? 'text-3xl font-bold text-black mr-3.5 md:mr-5':"text-3xl text-neutral-400 mr-3.5 md:mr-5"}>3</button>
+        <button className={page === 4 ? 'text-3xl font-bold text-black mr-3.5 md:mr-5':"text-3xl text-neutral-400 mr-3.5 md:mr-5"}>4</button>
       </div>
-      <button>
+      <button className={page === 4 ? 'hidden':''} onClick={() => setPage(page +1)}>
         <svg
           width="18"
           height="18"
