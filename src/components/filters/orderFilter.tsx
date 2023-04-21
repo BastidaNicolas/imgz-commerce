@@ -1,21 +1,43 @@
-import { ProductListContext } from "@/helpers/context";
-import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function OrderFilter({ option }: any) {
+  const router = useRouter();
+  const { orderBy, ascending } = router.query;
 
-  const [ascending, setAscending] = useState<boolean>(false)
-  const [byWhat, setByWhat] = useState<string>('price')
+  const [thiswhat, setWhat] = useState({ ...router.query, orderBy: "price" });
+  const [lowToHigh, setLowToHigh] = useState({
+    ...router.query,
+    ascending: 'false',
+  });
 
-  const {productList, setProductList}:any = useContext(ProductListContext)
+  const handleOrder = (byWhat: any) => {
+    router.push(
+      {
+        pathname: "/",
+        query: byWhat,
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
-  const handleOrder = (byWhat:string, ascending:boolean, productList:any, setProductList:any) => {
-    console.log(byWhat, ascending)
+  const handleLowToHigh = () => {
+    if(ascending === 'true'){
+      handleOrder({ ...router.query, ascending: 'false' })
+      return;
+    }
+    handleOrder({ ...router.query, ascending: 'true' })
     return;
   }
 
   useEffect(() => {
-    handleOrder(byWhat, ascending, productList, setProductList);
-  },[byWhat, ascending])
+    setWhat({ ...router.query, orderBy: orderBy as string });
+  }, [orderBy]);
+
+  useEffect(() => {
+    setLowToHigh({ ...router.query, ascending: ascending as string });
+  }, [ascending]);
 
   return (
     <div className="flex items-center text-xl w-full justify-between">
@@ -47,26 +69,32 @@ export default function OrderFilter({ option }: any) {
         Sort By
       </div>
       <div className="flex items-center">
-      <select className="appearance-none bg-white block pr-2 focus:outline-none" value={byWhat} onChange={(e) => setByWhat(e.target.value)} >
-        <option className="appearance-none" value="price">
-          Price
-        </option>
-        <option className="appearance-none" value="name">
-          Name
-        </option>
-      </select>
-      <button onClick={() => setAscending(!ascending)} >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className={`${!ascending && 'rotate-180'}`}
+        <select
+          className="appearance-none bg-white block pr-2 focus:outline-none"
+          value={thiswhat.orderBy}
+          onChange={(e) =>
+            handleOrder({ ...router.query, orderBy: e.target.value })
+          }
         >
-          <path d="M4 8L12 16L20 8" stroke="black" strokeWidth="3" />
-        </svg>
-      </button>
+          <option className="appearance-none" value="price">
+            Price
+          </option>
+          <option className="appearance-none" value="name">
+            Name
+          </option>
+        </select>
+        <button onClick={handleLowToHigh}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={`${lowToHigh.ascending === 'true' && "rotate-180"}`}
+          >
+            <path d="M4 8L12 16L20 8" stroke="black" strokeWidth="3" />
+          </svg>
+        </button>
       </div>
     </div>
   );

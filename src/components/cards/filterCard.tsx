@@ -1,12 +1,13 @@
 import { useContext, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import { FiltersOpenContext } from "@/helpers/context";
+
 import MultiSelect from "../filters/multiSelect";
 import SingleSelect from "../filters/singleSelect";
 import ExitBtn from "../buttons/exitBtn";
-import { FilterContext, FiltersOpenContext } from "@/helpers/context";
 import ClearBtn from "../buttons/clearBtn";
 import SaveBtn from "../buttons/saveBtn";
 import OrderFilter from "../filters/orderFilter";
-import { useRouter } from "next/router";
 
 const category = {
   name: "category",
@@ -33,9 +34,9 @@ export default function FilterCard() {
     useContext(FiltersOpenContext);
 
   const router = useRouter();
-  const { page, filterBy } = router.query;
+  const { filterBy } = router.query;
   const [selectedFilters, setSelectedFilters] = useState({
-    page,
+    ...router.query,
     filterBy: [''],
   });
 
@@ -70,20 +71,20 @@ export default function FilterCard() {
   useEffect(() => {
     if (!filterBy) {
       setSelectedFilters({
-        page,
+        ...router.query,
         filterBy: [],
       });
       return;
     }
     if (Array.isArray(filterBy)) {
       setSelectedFilters({
-        page,
+        ...router.query,
         filterBy: filterBy,
       });
       return;
     }
     setSelectedFilters({
-      page,
+      ...router.query,
       filterBy: [filterBy],
     });
   }, [filterBy]);

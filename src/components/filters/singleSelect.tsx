@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import CheckBtn from "../buttons/checkBtn";
-import { FilterContext } from "@/helpers/context";
 import { useRouter } from "next/router";
 
 export default function SingleSelect({
@@ -9,12 +7,12 @@ export default function SingleSelect({
   setFilerRoute,
 }: any) {
   const router = useRouter();
-  const { page, filterBy } = router.query;
+  const { filterBy } = router.query;
 
   const checkIfSelected = (value: string) => {
     if (Array.isArray(filterBy)) {
       if (filterBy.includes(value)) {
-        setFilerRoute({page, filterBy: [...filterBy.filter((item: any) => item !== value)]});
+        setFilerRoute({...router.query, filterBy: [...filterBy.filter((item: any) => item !== value)]});
         return;
       }
 
@@ -23,18 +21,18 @@ export default function SingleSelect({
       });
 
       // tempArr.push(value);
-      setFilerRoute({page , filterBy: [...tempArr, value]});
+      setFilerRoute({...router.query , filterBy: [...tempArr, value]});
       return;
     }
     if(filterBy === value){
-      setFilerRoute({page , filterBy: []});
+      setFilerRoute({...router.query , filterBy: []});
       return;
     }
     if(!option.options.some((item: any) => item.value.includes(filterBy))){
-      setFilerRoute({page , filterBy: [filterBy, value]});
+      setFilerRoute({...router.query , filterBy: [filterBy, value]});
       return;
     }
-    setFilerRoute({page , filterBy: value});
+    setFilerRoute({...router.query , filterBy: value});
     return;
   };
 

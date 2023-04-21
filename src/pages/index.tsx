@@ -47,9 +47,15 @@ export default function Home() {
   const {filterBy} = router.query;
 
   useEffect(() => {
-    // fetchData();
-    // console.log(filterBy)
-  },[filterBy])
+    router.push(
+      {
+        pathname: "/",
+        query: {page: 1, orderBy: "price", ascending: false},
+      },
+      undefined,
+      { shallow: true }
+    );
+  },[])
 
   return (
     <main

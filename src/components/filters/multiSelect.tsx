@@ -1,31 +1,30 @@
-import { useEffect, useState } from "react";
 import CheckBtn from "../buttons/checkBtn";
 import { useRouter } from "next/router";
 
 export default function MultiSelect({ option, selectedFilters, setFilerRoute }: any) {
 
   const router = useRouter();
-  const { page, filterBy } = router.query;
+  const { filterBy } = router.query;
 
 
   const checkIfSelected = (value: string) => {
     if (Array.isArray(filterBy)) {
       if (filterBy.includes(value)) {
         setFilerRoute({
-          page,
+          ...router.query,
           filterBy: filterBy.filter((item) => item !== value),
         });
         return;
       }
-      setFilerRoute({ page, filterBy: [...selectedFilters.filterBy, value] });
+      setFilerRoute({ ...router.query, filterBy: [...selectedFilters.filterBy, value] });
       return;
     }
     if (filterBy === value) {
-      setFilerRoute({ page, filterBy: [] });
+      setFilerRoute({ ...router.query, filterBy: [] });
       return;
     }
     const newArray = filterBy ? [filterBy, value]:value
-    setFilerRoute({ page, filterBy: newArray });
+    setFilerRoute({ ...router.query, filterBy: newArray });
     return;
   };
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function PageFilter({ option }: any) {
   const router = useRouter();
 
-  const [page, setPage] = useState({ page: 1 });
+  const [page, setPage] = useState({ ...router.query, page: 1 });
 
   const changePage = (value: any) => {
     router.push(
@@ -18,18 +18,16 @@ export default function PageFilter({ option }: any) {
   };
 
   useEffect(() => {
-    changePage(page);
-  }, []);
-
-  useEffect(() => {
-    setPage({ page: Number(router.query.page) });
+    setPage({ ...router.query, page: Number(router.query.page) });
   }, [router.query.page]);
 
   return (
     <div className="flex items-center justify-center mb-14">
       <button
         className={router.query.page === "1" ? "hidden" : ""}
-        onClick={() => changePage({ page: Number(router.query.page) - 1 })}
+        onClick={() =>
+          changePage({ ...router.query, page: Number(router.query.page) - 1 })
+        }
       >
         <svg
           width="18"
@@ -56,7 +54,7 @@ export default function PageFilter({ option }: any) {
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
-          onClick={() => changePage(1)}
+          onClick={() => changePage({ ...router.query, page: 1 })}
         >
           1
         </button>
@@ -66,7 +64,7 @@ export default function PageFilter({ option }: any) {
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
-          onClick={() => changePage({ page: 2 })}
+          onClick={() => changePage({ ...router.query, page: 2 })}
         >
           2
         </button>
@@ -76,7 +74,7 @@ export default function PageFilter({ option }: any) {
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
-          onClick={() => changePage(3)}
+          onClick={() => changePage({ ...router.query, page: 3 })}
         >
           3
         </button>
@@ -86,14 +84,16 @@ export default function PageFilter({ option }: any) {
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
-          onClick={() => changePage(4)}
+          onClick={() => changePage({ ...router.query, page: 4 })}
         >
           4
         </button>
       </div>
       <button
         className={router.query.page === "4" ? "hidden" : ""}
-        onClick={() => changePage({ page: Number(router.query.page) + 1 })}
+        onClick={() =>
+          changePage({ ...router.query, page: Number(router.query.page) + 1 })
+        }
       >
         <svg
           width="18"
