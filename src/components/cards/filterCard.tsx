@@ -29,7 +29,7 @@ const priceRange = {
 //HAVE TO IMPLEMENT SOMETHING THAT WOULD MAKE CALLS AUTAMATICALY IF IN >= MD WIDTH SCREEN
 //AND HAVE TO CLICK SAVEBTN ON SMALLER SCREENS
 
-export default function FilterCard() {
+export default function FilterCard({fetchData}:any) {
   const { filterMenuOpen, setFilterMenuOpen }: any =
     useContext(FiltersOpenContext);
 
@@ -126,10 +126,10 @@ export default function FilterCard() {
       >
         <ClearBtn
           setState={setFilerRoute}
-          value={{ ...router.query, filterBy: [] }}
+          value={{ ...router.query, orderBy: "price", ascending: false, filterBy: [] }}
         ></ClearBtn>
         <div className="mx-2.5"></div>
-        <SaveBtn handleFunc={() => console.log("handled")}></SaveBtn>
+        <SaveBtn handleFunc={() => fetchData()}></SaveBtn>
       </div>
     </>
   );

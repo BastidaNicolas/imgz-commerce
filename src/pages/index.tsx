@@ -44,7 +44,7 @@ export default function Home() {
   }
 
   const router = useRouter();
-  const {filterBy} = router.query;
+  const {page, filterBy, orderBy, ascending} = router.query;
 
   useEffect(() => {
     router.push(
@@ -55,7 +55,14 @@ export default function Home() {
       undefined,
       { shallow: true }
     );
+    fetchData()
   },[])
+
+  useEffect(() => {
+    if(window.innerWidth >= 1024){
+      fetchData()
+    }
+  },[page, filterBy, orderBy, ascending])
 
   return (
     <main
@@ -86,7 +93,7 @@ export default function Home() {
                   <ToggleFilterBtn></ToggleFilterBtn>
                 </div>
                 <div className="flex ">
-                  <FilterCard></FilterCard>
+                  <FilterCard fetchData={fetchData}></FilterCard>
                   <div className="w-full">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
                       <CardMd></CardMd>
