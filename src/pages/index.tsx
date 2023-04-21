@@ -1,5 +1,5 @@
 import { Archivo } from "next/font/google";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   CartListContext,
   FilterContext,
@@ -14,6 +14,7 @@ import Header from "@/components/header";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
+import { useRouter } from "next/router";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -35,6 +36,20 @@ export default function Home() {
     () => ({ cartList, setCartList }),
     [cartList]
   );
+
+  const fetchData = async () => {
+    const data = await fetch('/api/hello');
+    const res = data.json()
+    return console.log(res);
+  }
+
+  const router = useRouter();
+  const {filterBy} = router.query;
+
+  useEffect(() => {
+    // fetchData();
+    // console.log(filterBy)
+  },[filterBy])
 
   return (
     <main

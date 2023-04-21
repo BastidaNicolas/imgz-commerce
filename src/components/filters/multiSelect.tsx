@@ -1,29 +1,44 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import CheckBtn from "../buttons/checkBtn";
-import { FilterContext } from "@/helpers/context";
+import { useRouter } from "next/router";
 
-export default function MultiSelect({ option }: any) {
+export default function MultiSelect({ option, selectedFilters, setFilerRoute }: any) {
 
-  const {filters, setFilters}:any = useContext(FilterContext);
+  const router = useRouter();
+  const { page, filterBy } = router.query;
 
 
   const checkIfSelected = (value: string) => {
-    if (filters.includes(value)) {
-      return setFilters(filters.filter((item:any) => item !== value));
+    if (Array.isArray(filterBy)) {
+      if (filterBy.includes(value)) {
+        setFilerRoute({
+          page,
+          filterBy: filterBy.filter((item) => item !== value),
+        });
+        return;
+      }
+      setFilerRoute({ page, filterBy: [...selectedFilters.filterBy, value] });
+      return;
     }
-    setFilters([...filters, value]);
-    return 
+    if (filterBy === value) {
+      setFilerRoute({ page, filterBy: [] });
+      return;
+    }
+    const newArray = filterBy ? [filterBy, value]:value
+    setFilerRoute({ page, filterBy: newArray });
+    return;
   };
+
 
   return (
     <div className="w-full">
-      <div className="text-xl font-bold mb-12 capitalize" >{option.name}</div>
+      <div className="text-xl font-bold mb-12 capitalize">{option.name}</div>
       {option.options.map((item: any, index: any) => (
         <CheckBtn
           key={index}
           name={item.name}
           value={item.value}
-          filter={filters}
+          filter={selectedFilters.filterBy}
           fnc={checkIfSelected}
         ></CheckBtn>
       ))}

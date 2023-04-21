@@ -1,24 +1,40 @@
 import { useContext } from "react";
 import CheckBtn from "../buttons/checkBtn";
 import { FilterContext } from "@/helpers/context";
+import { useRouter } from "next/router";
 
-export default function SingleSelect({ option }: any) {
-
-  const {filters, setFilters}:any = useContext(FilterContext);
+export default function SingleSelect({
+  option,
+  selectedFilters,
+  setFilerRoute,
+}: any) {
+  const router = useRouter();
+  const { page, filterBy } = router.query;
 
   const checkIfSelected = (value: string) => {
-    if (filters.includes(value)) {
-      setFilters([...filters.filter((item: any) => item !== value)]);
+    if (Array.isArray(filterBy)) {
+      if (filterBy.includes(value)) {
+        setFilerRoute({page, filterBy: [...filterBy.filter((item: any) => item !== value)]});
+        return;
+      }
+
+      let tempArr = filterBy.filter((filter: string) => {
+        return !option.options.some((item: any) => item.value.includes(filter));
+      });
+
+      // tempArr.push(value);
+      setFilerRoute({page , filterBy: [...tempArr, value]});
       return;
     }
-
-    let tempArr = filters.filter((filter:string) => {
-        return !option.options.some((item:any) => item.value.includes(filter));
-      }
-    )
-
-    tempArr.push(value)
-    setFilters(tempArr);
+    if(filterBy === value){
+      setFilerRoute({page , filterBy: []});
+      return;
+    }
+    if(!option.options.some((item: any) => item.value.includes(filterBy))){
+      setFilerRoute({page , filterBy: [filterBy, value]});
+      return;
+    }
+    setFilerRoute({page , filterBy: value});
     return;
   };
 
@@ -30,7 +46,7 @@ export default function SingleSelect({ option }: any) {
           key={index}
           name={item.name}
           value={item.value}
-          filter={filters}
+          filter={selectedFilters.filterBy}
           fnc={checkIfSelected}
         ></CheckBtn>
       ))}

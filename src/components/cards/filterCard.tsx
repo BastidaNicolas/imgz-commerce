@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import MultiSelect from "../filters/multiSelect";
 import SingleSelect from "../filters/singleSelect";
 import ExitBtn from "../buttons/exitBtn";
@@ -6,6 +6,7 @@ import { FilterContext, FiltersOpenContext } from "@/helpers/context";
 import ClearBtn from "../buttons/clearBtn";
 import SaveBtn from "../buttons/saveBtn";
 import OrderFilter from "../filters/orderFilter";
+import { useRouter } from "next/router";
 
 const category = {
   name: "category",
@@ -18,20 +19,36 @@ const category = {
 const priceRange = {
   name: "price range",
   options: [
-    { value: "cheap ", name: "cheap" },
+    { value: "cheap", name: "cheap" },
     { value: "expensive", name: "expensive" },
     { value: "alright", name: "alright" },
   ],
 };
 
-//HAVE TO IMPLEMENT SOMETHING THAT WOULD MAKE CALLS AUTAMATICALY IF IN >= MD WIDTH SCREEN 
+//HAVE TO IMPLEMENT SOMETHING THAT WOULD MAKE CALLS AUTAMATICALY IF IN >= MD WIDTH SCREEN
 //AND HAVE TO CLICK SAVEBTN ON SMALLER SCREENS
 
 export default function FilterCard() {
   const { filterMenuOpen, setFilterMenuOpen }: any =
     useContext(FiltersOpenContext);
-  const {setFilters}: any =
-    useContext(FilterContext);
+
+  const router = useRouter();
+  const { page, filterBy } = router.query;
+  const [selectedFilters, setSelectedFilters] = useState({
+    page,
+    filterBy: [''],
+  });
+
+  const setFilerRoute = (value: any) => {
+    router.push(
+      {
+        pathname: "/",
+        query: value,
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   const handleResizeWindow = () => {
     if (window.innerWidth >= 1024) {
@@ -43,12 +60,33 @@ export default function FilterCard() {
   };
 
   useEffect(() => {
-      handleResizeWindow()
+    handleResizeWindow();
     window.addEventListener("resize", handleResizeWindow);
     return () => {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, []);
+
+  useEffect(() => {
+    if (!filterBy) {
+      setSelectedFilters({
+        page,
+        filterBy: [],
+      });
+      return;
+    }
+    if (Array.isArray(filterBy)) {
+      setSelectedFilters({
+        page,
+        filterBy: filterBy,
+      });
+      return;
+    }
+    setSelectedFilters({
+      page,
+      filterBy: [filterBy],
+    });
+  }, [filterBy]);
 
   return (
     <>
@@ -66,9 +104,17 @@ export default function FilterCard() {
             <div className="lg:hidden my-4 lg:my-0">
               <OrderFilter></OrderFilter>
             </div>
-            <MultiSelect option={category}></MultiSelect>
+            <MultiSelect
+              option={category}
+              selectedFilters={selectedFilters}
+              setFilerRoute={setFilerRoute}
+            ></MultiSelect>
             <div className="border-b border-neutral-300 mb-8"></div>
-            <SingleSelect option={priceRange}></SingleSelect>
+            <SingleSelect
+              option={priceRange}
+              selectedFilters={selectedFilters}
+              setFilerRoute={setFilerRoute}
+            ></SingleSelect>
           </div>
         </div>
       </div>
@@ -77,9 +123,12 @@ export default function FilterCard() {
           filterMenuOpen ? "flex" : "hidden"
         } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
       >
-        <ClearBtn setState={setFilters} value={['']} ></ClearBtn>
-        <div className="mx-2.5" ></div>
-        <SaveBtn handleFunc={()=> console.log("handled")}></SaveBtn>
+        <ClearBtn
+          setState={setFilerRoute}
+          value={{ ...router.query, filterBy: [] }}
+        ></ClearBtn>
+        <div className="mx-2.5"></div>
+        <SaveBtn handleFunc={() => console.log("handled")}></SaveBtn>
       </div>
     </>
   );

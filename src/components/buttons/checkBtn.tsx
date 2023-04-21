@@ -21,7 +21,7 @@ export default function CheckBtn({
         name={name}
         id={name}
         value={value}
-        checked={filter.includes(value)}
+        checked={filter?.includes(value)}
         onChange={() => fnc(value)}
         readOnly
       />
