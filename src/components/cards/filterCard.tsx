@@ -97,7 +97,6 @@ export default function FilterCard() {
       >
         <div className="lg:hidden flex items-center justify-between">
           <div className=" text-3xl font-bold">Filter</div>
-          <ExitBtn setIsOpen={setFilterMenuOpen}></ExitBtn>
         </div>
         <div className="w-full h-full lg:h-fit overflow-y-auto">
           <div className="w-full">
@@ -117,7 +116,7 @@ export default function FilterCard() {
       >
         <ClearBtn setState={setFilerRoute} value={{ ...router.query, orderBy: "price", ascending: false, filterBy: [] }}></ClearBtn>
         <div className="mx-2.5"></div>
-        <SaveBtn handleFunc={() => console.log("make this just close the menu")}></SaveBtn>
+        <SaveBtn handleFunc={() => setFilterMenuOpen(false)}></SaveBtn>
       </div>
     </>
   );

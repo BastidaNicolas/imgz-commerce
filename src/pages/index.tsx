@@ -23,7 +23,8 @@ export default function Home() {
   const [cartList, setCartList] = useState([]);
   const cartListMemo: any = useMemo(() => ({ cartList, setCartList }), [cartList]);
 
-  const fetchData = async () => {
+  const fetchData = async (value:any) => {
+    console.log(value)
     const data = await fetch("/api/hello");
     const res = data.json();
     return console.log(res);
@@ -48,6 +49,7 @@ export default function Home() {
       if (!router.query.page || !router.query.orderBy || !router.query.ascending) {
         handleQueries({ page: "1", orderBy: "price", ascending: "false" });
       }
+      fetchData(router.query)
     }
   }, [router]);
 
