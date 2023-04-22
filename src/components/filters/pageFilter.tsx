@@ -13,7 +13,7 @@ export default function PageFilter({ option }: any) {
         query: value,
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
   };
 
@@ -25,17 +25,9 @@ export default function PageFilter({ option }: any) {
     <div className="flex items-center justify-center mb-14">
       <button
         className={page.page === "1" ? "hidden" : ""}
-        onClick={() =>
-          changePage({ ...router.query, page: Number(router.query.page) - 1 })
-        }
+        onClick={() => changePage({ ...router.query, page: Number(router.query.page) - 1 })}
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_768_2)">
             <path d="M13 1L5 9L13 17" stroke="black" strokeWidth="3" />
           </g>
@@ -91,17 +83,9 @@ export default function PageFilter({ option }: any) {
       </div>
       <button
         className={page.page === "4" ? "hidden" : ""}
-        onClick={() =>
-          changePage({ ...router.query, page: Number(router.query.page) + 1 })
-        }
+        onClick={() => changePage({ ...router.query, page: Number(router.query.page) + 1 })}
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_768_2)">
             <path d="M5 17L13 9L5 1" stroke="black" strokeWidth="3" />
           </g>

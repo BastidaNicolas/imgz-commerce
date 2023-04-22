@@ -2,10 +2,8 @@ import CheckBtn from "../buttons/checkBtn";
 import { useRouter } from "next/router";
 
 export default function MultiSelect({ option, selectedFilters, setFilerRoute }: any) {
-
   const router = useRouter();
   const { filterBy } = router.query;
-
 
   const checkIfSelected = (value: string) => {
     if (Array.isArray(filterBy)) {
@@ -23,11 +21,10 @@ export default function MultiSelect({ option, selectedFilters, setFilerRoute }: 
       setFilerRoute({ ...router.query, filterBy: [] });
       return;
     }
-    const newArray = filterBy ? [filterBy, value]:value
+    const newArray = filterBy ? [filterBy, value] : value;
     setFilerRoute({ ...router.query, filterBy: newArray });
     return;
   };
-
 
   return (
     <div className="w-full">

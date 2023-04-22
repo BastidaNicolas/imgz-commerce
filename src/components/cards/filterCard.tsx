@@ -30,14 +30,13 @@ const priceRange = {
 //AND HAVE TO CLICK SAVEBTN ON SMALLER SCREENS
 
 export default function FilterCard() {
-  const { filterMenuOpen, setFilterMenuOpen }: any =
-    useContext(FiltersOpenContext);
+  const { filterMenuOpen, setFilterMenuOpen }: any = useContext(FiltersOpenContext);
 
   const router = useRouter();
   const { filterBy } = router.query;
   const [selectedFilters, setSelectedFilters] = useState({
     ...router.query,
-    filterBy: [''],
+    filterBy: [""],
   });
 
   const setFilerRoute = (value: any) => {
@@ -47,7 +46,7 @@ export default function FilterCard() {
         query: value,
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
   };
 
@@ -105,17 +104,9 @@ export default function FilterCard() {
             <div className="lg:hidden my-4 lg:my-0">
               <OrderFilter></OrderFilter>
             </div>
-            <MultiSelect
-              option={category}
-              selectedFilters={selectedFilters}
-              setFilerRoute={setFilerRoute}
-            ></MultiSelect>
+            <MultiSelect option={category} selectedFilters={selectedFilters} setFilerRoute={setFilerRoute}></MultiSelect>
             <div className="border-b border-neutral-300 mb-8"></div>
-            <SingleSelect
-              option={priceRange}
-              selectedFilters={selectedFilters}
-              setFilerRoute={setFilerRoute}
-            ></SingleSelect>
+            <SingleSelect option={priceRange} selectedFilters={selectedFilters} setFilerRoute={setFilerRoute}></SingleSelect>
           </div>
         </div>
       </div>
@@ -124,12 +115,9 @@ export default function FilterCard() {
           filterMenuOpen ? "flex" : "hidden"
         } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
       >
-        <ClearBtn
-          setState={setFilerRoute}
-          value={{ ...router.query, orderBy: "price", ascending: false, filterBy: [] }}
-        ></ClearBtn>
+        <ClearBtn setState={setFilerRoute} value={{ ...router.query, orderBy: "price", ascending: false, filterBy: [] }}></ClearBtn>
         <div className="mx-2.5"></div>
-        <SaveBtn handleFunc={() => console.log('make this just close the menu')}></SaveBtn>
+        <SaveBtn handleFunc={() => console.log("make this just close the menu")}></SaveBtn>
       </div>
     </>
   );

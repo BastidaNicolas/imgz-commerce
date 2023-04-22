@@ -1,11 +1,6 @@
 import { Archivo } from "next/font/google";
 import { useEffect, useMemo, useState } from "react";
-import {
-  CartListContext,
-  FilterContext,
-  FiltersOpenContext,
-  ProductListContext,
-} from "@/helpers/context";
+import { CartListContext, FilterContext, FiltersOpenContext, ProductListContext } from "@/helpers/context";
 
 import CardMd from "@/components/cards/cardMd";
 import CardXl from "@/components/cards/cardXl";
@@ -22,20 +17,11 @@ export default function Home() {
   const [filters, setFilters] = useState([]);
   const filterValue: any = useMemo(() => ({ filters, setFilters }), [filters]);
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
-  const filterMenuOpenValue: any = useMemo(
-    () => ({ filterMenuOpen, setFilterMenuOpen }),
-    [filterMenuOpen]
-  );
+  const filterMenuOpenValue: any = useMemo(() => ({ filterMenuOpen, setFilterMenuOpen }), [filterMenuOpen]);
   const [productList, setProductList] = useState([]);
-  const productListMemo: any = useMemo(
-    () => ({ productList, setProductList }),
-    [productList]
-  );
+  const productListMemo: any = useMemo(() => ({ productList, setProductList }), [productList]);
   const [cartList, setCartList] = useState([]);
-  const cartListMemo: any = useMemo(
-    () => ({ cartList, setCartList }),
-    [cartList]
-  );
+  const cartListMemo: any = useMemo(() => ({ cartList, setCartList }), [cartList]);
 
   const fetchData = async () => {
     const data = await fetch("/api/hello");
@@ -53,22 +39,20 @@ export default function Home() {
         query: value,
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
   };
 
   useEffect(() => {
-    if(router.isReady){
+    if (router.isReady) {
       if (!router.query.page || !router.query.orderBy || !router.query.ascending) {
-        handleQueries({ page: '1', orderBy: 'price', ascending: 'false'});
+        handleQueries({ page: "1", orderBy: "price", ascending: "false" });
       }
     }
   }, [router]);
 
   return (
-    <main
-      className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}
-    >
+    <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
       <CartListContext.Provider value={cartListMemo}>
         <Header></Header>
         <ProductListContext.Provider value={productListMemo}>
@@ -78,15 +62,9 @@ export default function Home() {
               <section className="w-full">
                 <div className="flex items-center justify-between mb-11">
                   <div className="flex items-center flex-flow truncate">
-                    <div className="font-bold text-lg md:text-3xl">
-                      Photography
-                    </div>
-                    <div className="font-bold text-3xl md:text-4xl mx-2 ">
-                      /
-                    </div>
-                    <div className="text-lg md:text-3xl text-neutral-400 truncate">
-                      Premium Photos
-                    </div>
+                    <div className="font-bold text-lg md:text-3xl">Photography</div>
+                    <div className="font-bold text-3xl md:text-4xl mx-2 ">/</div>
+                    <div className="text-lg md:text-3xl text-neutral-400 truncate">Premium Photos</div>
                   </div>
                   <div className="hidden lg:block w-min">
                     <OrderFilter></OrderFilter>

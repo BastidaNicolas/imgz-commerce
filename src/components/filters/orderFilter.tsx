@@ -8,7 +8,7 @@ export default function OrderFilter({ option }: any) {
   const [thiswhat, setWhat] = useState({ ...router.query, orderBy: "price" });
   const [lowToHigh, setLowToHigh] = useState({
     ...router.query,
-    ascending: 'false',
+    ascending: "false",
   });
 
   const handleOrder = (byWhat: any) => {
@@ -18,18 +18,18 @@ export default function OrderFilter({ option }: any) {
         query: byWhat,
       },
       undefined,
-      { shallow: true }
+      { shallow: true },
     );
   };
 
   const handleLowToHigh = () => {
-    if(ascending === 'true'){
-      handleOrder({ ...router.query, ascending: 'false' })
+    if (ascending === "true") {
+      handleOrder({ ...router.query, ascending: "false" });
       return;
     }
-    handleOrder({ ...router.query, ascending: 'true' })
+    handleOrder({ ...router.query, ascending: "true" });
     return;
-  }
+  };
 
   useEffect(() => {
     setWhat({ ...router.query, orderBy: orderBy as string });
@@ -72,9 +72,7 @@ export default function OrderFilter({ option }: any) {
         <select
           className="appearance-none bg-white block pr-2 focus:outline-none"
           value={thiswhat.orderBy}
-          onChange={(e) =>
-            handleOrder({ ...router.query, orderBy: e.target.value })
-          }
+          onChange={(e) => handleOrder({ ...router.query, orderBy: e.target.value })}
         >
           <option className="appearance-none" value="price">
             Price
@@ -90,7 +88,7 @@ export default function OrderFilter({ option }: any) {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={`${lowToHigh.ascending === 'true' && "rotate-180"}`}
+            className={`${lowToHigh.ascending === "true" && "rotate-180"}`}
           >
             <path d="M4 8L12 16L20 8" stroke="black" strokeWidth="3" />
           </svg>
