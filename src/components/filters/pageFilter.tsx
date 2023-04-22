@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function PageFilter({ option }: any) {
   const router = useRouter();
 
-  const [page, setPage] = useState({ ...router.query, page: 1 });
+  const [page, setPage] = useState({ ...router.query, page: "1" });
 
   const changePage = (value: any) => {
     router.push(
@@ -18,13 +18,13 @@ export default function PageFilter({ option }: any) {
   };
 
   useEffect(() => {
-    setPage({ ...router.query, page: Number(router.query.page) });
+    setPage({ ...router.query, page: router.query.page as string });
   }, [router.query.page]);
 
   return (
     <div className="flex items-center justify-center mb-14">
       <button
-        className={router.query.page === "1" ? "hidden" : ""}
+        className={page.page === "1" ? "hidden" : ""}
         onClick={() =>
           changePage({ ...router.query, page: Number(router.query.page) - 1 })
         }
@@ -50,7 +50,7 @@ export default function PageFilter({ option }: any) {
         {/* MAKE MARGIN NOT APEAR IF IT'S THE LAST NUMBER, ALSO ADJUST COLOR AND WEIGHT BASED ON IF IT IS THE CURRENT PAGE*/}
         <button
           className={
-            router.query.page === "1"
+            page.page === "1"
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
@@ -60,7 +60,7 @@ export default function PageFilter({ option }: any) {
         </button>
         <button
           className={
-            router.query.page === "2"
+            page.page === "2"
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
@@ -70,7 +70,7 @@ export default function PageFilter({ option }: any) {
         </button>
         <button
           className={
-            router.query.page === "3"
+            page.page === "3"
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
@@ -80,7 +80,7 @@ export default function PageFilter({ option }: any) {
         </button>
         <button
           className={
-            router.query.page === "4"
+            page.page === "4"
               ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
               : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
           }
@@ -90,7 +90,7 @@ export default function PageFilter({ option }: any) {
         </button>
       </div>
       <button
-        className={router.query.page === "4" ? "hidden" : ""}
+        className={page.page === "4" ? "hidden" : ""}
         onClick={() =>
           changePage({ ...router.query, page: Number(router.query.page) + 1 })
         }

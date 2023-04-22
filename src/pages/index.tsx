@@ -38,31 +38,32 @@ export default function Home() {
   );
 
   const fetchData = async () => {
-    const data = await fetch('/api/hello');
-    const res = data.json()
+    const data = await fetch("/api/hello");
+    const res = data.json();
     return console.log(res);
-  }
+  };
 
   const router = useRouter();
-  const {page, filterBy, orderBy, ascending} = router.query;
+  const { page, filterBy, orderBy, ascending } = router.query;
 
-  useEffect(() => {
+  const handleQueries = (value: any) => {
     router.push(
       {
         pathname: "/",
-        query: {page: 1, orderBy: "price", ascending: false},
+        query: value,
       },
       undefined,
       { shallow: true }
     );
-    fetchData()
-  },[])
+  };
 
   useEffect(() => {
-    if(window.innerWidth >= 1024){
-      fetchData()
+    if(router.isReady){
+      if (!router.query.page || !router.query.orderBy || !router.query.ascending) {
+        handleQueries({ page: '1', orderBy: 'price', ascending: 'false'});
+      }
     }
-  },[page, filterBy, orderBy, ascending])
+  }, [router]);
 
   return (
     <main
@@ -93,7 +94,7 @@ export default function Home() {
                   <ToggleFilterBtn></ToggleFilterBtn>
                 </div>
                 <div className="flex ">
-                  <FilterCard fetchData={fetchData}></FilterCard>
+                  <FilterCard></FilterCard>
                   <div className="w-full">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
                       <CardMd></CardMd>
