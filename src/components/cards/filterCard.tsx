@@ -1,10 +1,9 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { FiltersOpenContext } from "@/helpers/context";
+import { FiltersOpenContext } from "@/context/context";
 
 import MultiSelect from "../filters/multiSelect";
 import SingleSelect from "../filters/singleSelect";
-import ExitBtn from "../buttons/exitBtn";
 import ClearBtn from "../buttons/clearBtn";
 import SaveBtn from "../buttons/saveBtn";
 import OrderFilter from "../filters/orderFilter";

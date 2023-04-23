@@ -1,4 +1,4 @@
-import { FiltersOpenContext } from "@/helpers/context";
+import { FiltersOpenContext } from "@/context/context";
 import { useContext } from "react";
 
 export default function ToggleFilterBtn() {
