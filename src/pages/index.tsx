@@ -1,6 +1,8 @@
 import { Archivo } from "next/font/google";
 import { useEffect, useMemo, useState } from "react";
 import { FiltersOpenContext } from "@/context/context";
+import { useRouter } from "next/router";
+import { trpc } from "@/utils/trpc";
 
 import CardMd from "@/components/cards/cardMd";
 import CardXl from "@/components/cards/cardXl";
@@ -9,8 +11,6 @@ import Header from "@/components/header";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
-import { useRouter } from "next/router";
-import { trpc } from "@/utils/trpc";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
