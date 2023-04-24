@@ -10,6 +10,7 @@ import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
 import { useRouter } from "next/router";
+import { trpc } from "@/utils/trpc";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -17,12 +18,7 @@ export default function Home() {
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const filterMenuOpenValue: any = useMemo(() => ({ filterMenuOpen, setFilterMenuOpen }), [filterMenuOpen]);
 
-  const fetchData = async (value: any) => {
-    console.log(value);
-    const data = await fetch("/api/hello");
-    const res = data.json();
-    return console.log(res);
-  };
+  const {data , isLoading} = trpc.getProducts.useQuery() 
 
   const router = useRouter();
 
@@ -42,9 +38,10 @@ export default function Home() {
       if (!router.query.page || !router.query.orderBy || !router.query.ascending) {
         handleQueries({ page: "1", orderBy: "price", ascending: "false" });
       }
-      fetchData(router.query);
     }
   }, [router]);
+
+  console.log(data?.products)
 
   return (
     <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>

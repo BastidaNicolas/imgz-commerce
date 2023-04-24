@@ -10,8 +10,9 @@ datasource db {
 
 model Product {
   id           Int      @id @default(autoincrement())
-  title        String   @db.VarChar(255)
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  title        String   @db.VarChar(255)
+  imageUrl     String   @map("image_url")
   category     String?
   price        Int
   description  String   @db.VarChar(800)
@@ -21,7 +22,7 @@ model Product {
   isBestSeller Boolean  @default(false)
 
   peopleAlsoBuy   PeopleAlsoBuy? @relation(fields: [peopleAlsoBuyId], references: [id])
-  peopleAlsoBuyId Int            @map("people_also_buy_id")
+  peopleAlsoBuyId Int?           @map("people_also_buy_id")
 
   photoOfTheDay PhotoOfTheDay?
 

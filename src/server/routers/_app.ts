@@ -1,16 +1,14 @@
-import { z } from 'zod';
-import { procedure, router } from '../trpc';
+import { z } from "zod";
+import { procedure, router } from "../trpc";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export const appRouter = router({
-  hello: procedure
-    .input(
-      z.object({
-        text: z.string(),
-      }),
-    )
-    .query(({ input }) => {
+  getProducts: procedure
+    .query(async () => {
       return {
-        greeting: `hello ${input.text}`,
+        products: await prisma.product.findMany(),
       };
     }),
 });
