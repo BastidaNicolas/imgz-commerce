@@ -11,7 +11,6 @@ import Header from "@/components/header";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
-import { arrayOutputType } from "zod";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const ITEMS_PER_PAGE = 6;
@@ -23,6 +22,8 @@ export default function Home() {
 
   const router = useRouter();
   const {data , isLoading} = trpc.getProducts.useQuery({ page: Number(router.query.page), amount: ITEMS_PER_PAGE, filters: router.query.filterBy as string[], orderBy: router.query.orderBy as string, ascending: router.query.ascending as string})
+  const photoOfTheDay = trpc.getPhotoOfTheDay.useQuery();
+  const peopleAlsoBuy = trpc.getPeopleAlsoBuy.useQuery();
 
   const handleQueries = (value: any) => {
     router.push(
@@ -43,12 +44,10 @@ export default function Home() {
     }
   }, [router]);
 
-  console.log(data)
-
   return (
     <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
       <Header></Header>
-      <CardXl></CardXl>
+      {photoOfTheDay.isLoading ? <div>loading...</div>:<CardXl photoOfTheDay={photoOfTheDay.data?.product} peopleAlsoBuy={peopleAlsoBuy.data?.products}/>}
       <FiltersOpenContext.Provider value={filterMenuOpenValue}>
         <section className="w-full">
           <div className="flex items-center justify-between mb-11">
@@ -68,7 +67,7 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
                 {isLoading ? 
                   'Loading...':
-                  data?.products.map((product:any) => (<CardMd product={product} />))
+                  data?.products.map((product:any) => (<CardMd key={product.id} product={product} />))
                 }
               </div>
               <PageFilter pages={data?.totalPages} ></PageFilter>

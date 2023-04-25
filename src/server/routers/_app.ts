@@ -70,10 +70,36 @@ export const appRouter = router({
         },
       });
 
-      const totalPages = Math.ceil(totalCount/input.amount);
+      const totalPages = Math.ceil(totalCount / input.amount);
 
-      return {products, totalPages};
+      return { products, totalPages };
     }),
+  getPhotoOfTheDay: procedure.query(async () => {
+    const data = await prisma.photoOfTheDay.findFirstOrThrow({
+      include: {
+        product: true,
+      },
+    });
+
+    const product = productDTO(data.product);
+
+    return {
+      product,
+    };
+  }),
+  getPeopleAlsoBuy: procedure.query(async () => {
+    const data = await prisma.peopleAlsoBuy.findFirstOrThrow({
+      include: {
+        products: true,
+      },
+    });
+
+    const products = data.products.map(productDTO);
+
+    return {
+      products,
+    };
+  }),
 });
 
 // export type definition of API

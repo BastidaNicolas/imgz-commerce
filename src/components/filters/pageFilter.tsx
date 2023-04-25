@@ -23,6 +23,7 @@ export default function PageFilter({ pages }: any) {
     for (let onPage = 1; onPage <= totalPages; onPage++) {
       pages.push(
         <button
+          key={onPage}
           className={Number(page.page) === onPage ? "text-3xl font-bold text-black mr-3.5 md:mr-5" : "text-3xl text-neutral-400 mr-3.5 md:mr-5"}
           onClick={() => changePage({ ...router.query, page: onPage })}
         >
