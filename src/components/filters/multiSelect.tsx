@@ -3,26 +3,27 @@ import { useRouter } from "next/router";
 
 export default function MultiSelect({ option, selectedFilters, setFilerRoute }: any) {
   const router = useRouter();
-  const { filterBy } = router.query;
+  const {page, filterBy } = router.query;
 
   const checkIfSelected = (value: string) => {
     if (Array.isArray(filterBy)) {
       if (filterBy.includes(value)) {
         setFilerRoute({
           ...router.query,
+          page: '1',
           filterBy: filterBy.filter((item) => item !== value),
         });
         return;
       }
-      setFilerRoute({ ...router.query, filterBy: [...selectedFilters.filterBy, value] });
+      setFilerRoute({ ...router.query, page: '1', filterBy: [...selectedFilters.filterBy, value] });
       return;
     }
     if (filterBy === value) {
-      setFilerRoute({ ...router.query, filterBy: [] });
+      setFilerRoute({ ...router.query, page: '1', filterBy: [] });
       return;
     }
     const newArray = filterBy ? [filterBy, value] : value;
-    setFilerRoute({ ...router.query, filterBy: newArray });
+    setFilerRoute({ ...router.query, page: '1', filterBy: newArray });
     return;
   };
 

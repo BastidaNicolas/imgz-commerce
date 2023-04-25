@@ -7,12 +7,12 @@ export default function SingleSelect({
   setFilerRoute,
 }: any) {
   const router = useRouter();
-  const { filterBy } = router.query;
+  const {page, filterBy } = router.query;
 
   const checkIfSelected = (value: string) => {
     if (Array.isArray(filterBy)) {
       if (filterBy.includes(value)) {
-        setFilerRoute({...router.query, filterBy: [...filterBy.filter((item: any) => item !== value)]});
+        setFilerRoute({...router.query, page: '1', filterBy: [...filterBy.filter((item: any) => item !== value)]});
         return;
       }
 
@@ -21,18 +21,18 @@ export default function SingleSelect({
       });
 
       // tempArr.push(value);
-      setFilerRoute({...router.query , filterBy: [...tempArr, value]});
+      setFilerRoute({...router.query, page: '1', filterBy: [...tempArr, value]});
       return;
     }
     if(filterBy === value){
-      setFilerRoute({...router.query , filterBy: []});
+      setFilerRoute({...router.query, page: '1', filterBy: []});
       return;
     }
     if(!option.options.some((item: any) => item.value.includes(filterBy))){
-      setFilerRoute({...router.query , filterBy: [filterBy, value]});
+      setFilerRoute({...router.query, page: '1', filterBy: [filterBy, value]});
       return;
     }
-    setFilerRoute({...router.query , filterBy: value});
+    setFilerRoute({...router.query, page: '1', filterBy: value});
     return;
   };
 

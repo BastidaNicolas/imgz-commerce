@@ -53,17 +53,26 @@ export const appRouter = router({
           take: input.amount,
           skip: (input.page - 1) * input.amount,
           orderBy: {
-            [input.orderBy]: input.ascending
+            [input.orderBy]: input.ascending,
           },
-          where:{
+          where: {
             category: {
-              in: input.filters
-            }
-          }
+              in: input.filters,
+            },
+          },
         })
       ).map(productDTO);
+      const totalCount = await prisma.product.count({
+        where: {
+          category: {
+            in: input.filters,
+          },
+        },
+      });
 
-      return products;
+      const totalPages = Math.ceil(totalCount/input.amount);
+
+      return {products, totalPages};
     }),
 });
 
