@@ -11,16 +11,18 @@ import Header from "@/components/header";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
+import { arrayOutputType } from "zod";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
+const ITEMS_PER_PAGE = 6;
 
 export default function Home() {
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const filterMenuOpenValue: any = useMemo(() => ({ filterMenuOpen, setFilterMenuOpen }), [filterMenuOpen]);
 
-  const {data , isLoading} = trpc.getProducts.useQuery() 
 
   const router = useRouter();
+  const {data , isLoading} = trpc.getProducts.useQuery({ page: Number(router.query.page), amount: ITEMS_PER_PAGE, filters: router.query.filterBy as string[], orderBy: router.query.orderBy as string, ascending: router.query.ascending as string})
 
   const handleQueries = (value: any) => {
     router.push(
@@ -36,12 +38,12 @@ export default function Home() {
   useEffect(() => {
     if (router.isReady) {
       if (!router.query.page || !router.query.orderBy || !router.query.ascending) {
-        handleQueries({ page: "1", orderBy: "price", ascending: "false" });
+        handleQueries({ page: "1", orderBy: "price", ascending: "asc" });
       }
     }
   }, [router]);
 
-  console.log(data?.products)
+  console.log(data)
 
   return (
     <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
@@ -64,12 +66,10 @@ export default function Home() {
             <FilterCard></FilterCard>
             <div className="w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
-                <CardMd></CardMd>
-                <CardMd></CardMd>
-                <CardMd></CardMd>
-                <CardMd></CardMd>
-                <CardMd></CardMd>
-                <CardMd></CardMd>
+                {isLoading ? 
+                  'Loading...':
+                  data?.map((product) => (<CardMd product={product} />))
+                }
               </div>
               <PageFilter></PageFilter>
             </div>

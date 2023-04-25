@@ -11,9 +11,9 @@ import OrderFilter from "../filters/orderFilter";
 const category = {
   name: "category",
   options: [
-    { value: "human", name: "human" },
-    { value: "animal", name: "animal" },
-    { value: "item", name: "item" },
+    { value: "people", name: "people" },
+    { value: "nature", name: "nature" },
+    { value: "items", name: "items" },
   ],
 };
 const priceRange = {
