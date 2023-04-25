@@ -113,7 +113,7 @@ export default function FilterCard() {
           filterMenuOpen ? "flex" : "hidden"
         } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
       >
-        <ClearBtn setState={setFilerRoute} value={{ page: '1', orderBy: "price", ascending: false, filterBy: [] }}></ClearBtn>
+        <ClearBtn setState={setFilerRoute} value={{ page: '1', orderBy: "price", ascending: 'desc' }}></ClearBtn>
         <div className="mx-2.5"></div>
         <SaveBtn handleFunc={() => setFilterMenuOpen(false)}></SaveBtn>
       </div>

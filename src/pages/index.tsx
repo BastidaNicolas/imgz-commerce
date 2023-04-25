@@ -38,7 +38,7 @@ export default function Home() {
   useEffect(() => {
     if (router.isReady) {
       if (!router.query.page || !router.query.orderBy || !router.query.ascending) {
-        handleQueries({ page: "1", orderBy: "price", ascending: "asc" });
+        handleQueries({ page: "1", orderBy: "price", ascending: "desc" });
       }
     }
   }, [router]);
