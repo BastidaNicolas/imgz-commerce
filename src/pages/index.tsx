@@ -68,7 +68,7 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
                 {isLoading ? 
                   'Loading...':
-                  data?.map((product) => (<CardMd product={product} />))
+                  data?.map((product:any) => (<CardMd product={product} />))
                 }
               </div>
               <PageFilter></PageFilter>
