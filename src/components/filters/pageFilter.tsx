@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { stringify } from "querystring";
 import { useEffect, useState } from "react";
 
 export default function PageFilter({ pages }: any) {

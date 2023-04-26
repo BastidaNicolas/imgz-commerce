@@ -12,6 +12,8 @@ import Header from "@/components/header";
 import ToggleFilterBtn from "@/components/buttons/toggleFilterBtn";
 import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
+import CardXlLoader from "@/components/loaders/cardXlLoader";
+import CardMdLoader from "@/components/loaders/cardMdLoader";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const ITEMS_PER_PAGE = 6;
@@ -45,11 +47,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const cookieData = cookie.get("imgz-cart")
+    const cookieData = cookie.get("imgz-cart");
     if (!cookieData) {
       cookie.set("imgz-cart", "");
-    }else{
-      setTotalCartItem(JSON.parse(cookieData).length)
+    } else {
+      setTotalCartItem(JSON.parse(cookieData).length);
     }
   }, []);
 
@@ -65,8 +67,8 @@ export default function Home() {
     <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
       <TotalCartItemsContext.Provider value={totalCartItemMemo}>
         <Header></Header>
-        {photoOfTheDay.isLoading ? (
-          <div>loading...</div>
+        {photoOfTheDay.isLoading && peopleAlsoBuy.isLoading ? (
+          <CardXlLoader/>
         ) : (
           <CardXl photoOfTheDay={photoOfTheDay.data?.product} peopleAlsoBuy={peopleAlsoBuy.data?.products} />
         )}
@@ -87,7 +89,7 @@ export default function Home() {
               <FilterCard></FilterCard>
               <div className="w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
-                  {isLoading ? "Loading..." : data?.products.map((product: any) => <CardMd key={product.id} product={product} />)}
+                  {isLoading ? <CardMdLoader/>: data?.products.map((product: any) => <CardMd key={product.id} product={product} />)}
                 </div>
                 <PageFilter pages={data?.totalPages}></PageFilter>
               </div>
