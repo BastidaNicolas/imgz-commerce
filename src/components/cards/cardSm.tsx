@@ -15,6 +15,8 @@ export default function CardSm({data}:any) {
           sizes="(max-width: 768px) 10vw,
                   5vw"
           fill
+          loading="lazy"
+          placeholder="blur"
         ></Image>
       </div>
     </div>

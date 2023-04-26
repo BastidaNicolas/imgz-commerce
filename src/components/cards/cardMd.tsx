@@ -17,6 +17,7 @@ export default function CardMd({product}:any) {
                   (max-width: 1200px) 50vw,
                   20vw"
           loading="lazy"
+          placeholder="blur"
         ></Image>
         <div className="hidden group-hover:block absolute w-full bottom-0" >
           <AddBtn data={product} />
