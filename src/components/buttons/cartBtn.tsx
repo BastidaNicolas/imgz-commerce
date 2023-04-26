@@ -23,7 +23,7 @@ export default function CartBtn() {
 
   return (
     <div className="group" >
-      <button onClick={() => setIsOpen(!isOpen)} >
+      <button onClick={() => setIsOpen(!isOpen)} aria-label={'open and close cart'}>
         <svg
           width="54"
           height="54"

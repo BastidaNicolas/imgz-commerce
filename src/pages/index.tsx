@@ -76,7 +76,7 @@ export default function Home() {
               <div className="flex items-center flex-flow truncate">
                 <div className="font-bold text-lg md:text-3xl">Photography</div>
                 <div className="font-bold text-3xl md:text-4xl mx-2 ">/</div>
-                <div className="text-lg md:text-3xl text-neutral-400 truncate">Premium Photos</div>
+                <div className="text-lg md:text-3xl text-neutral-500 truncate">Premium Photos</div>
               </div>
               <div className="hidden lg:block w-min">
                 <OrderFilter></OrderFilter>
