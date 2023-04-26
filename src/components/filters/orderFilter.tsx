@@ -81,7 +81,7 @@ export default function OrderFilter({ option }: any) {
             Name
           </option>
         </select>
-        <button onClick={handleLowToHigh}>
+        <button onClick={handleLowToHigh} aria-label="toggle ascending">
           <svg
             width="24"
             height="24"
