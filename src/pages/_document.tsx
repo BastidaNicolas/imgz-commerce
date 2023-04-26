@@ -3,8 +3,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <title>Aluminum-backed Photo Printing Shop</title>
-
+      <title>Buy aluminum backed photo printings in this shop</title>
       <Head>
         <meta
           name="description"
