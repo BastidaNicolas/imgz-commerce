@@ -31,6 +31,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "prisma": "^4.13.0"
   }
 }
