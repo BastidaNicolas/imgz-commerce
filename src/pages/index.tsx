@@ -66,11 +66,7 @@ export default function Home() {
 
   return (
     <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
-      <Head>
-          <title>Buy aluminum backed photo printings in this shop</title>
-          {/* <meta property="og:title" content="Buy aluminum backed photo printings in this shop" key="title" /> */}
       
-      </Head>
       <TotalCartItemsContext.Provider value={totalCartItemMemo}>
         <Header></Header>
         {photoOfTheDay.isLoading && peopleAlsoBuy.isLoading ? (
