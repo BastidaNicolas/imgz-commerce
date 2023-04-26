@@ -41,7 +41,6 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
                   (max-width: 1200px) 50vw,
                   65vw"
             fill
-            placeholder="blur"
             priority
           ></Image>
           <div className="absolute bg-white z-10 text-base md:text-xl py-5 px-14 bottom-0 left-0">Photo of the day</div>

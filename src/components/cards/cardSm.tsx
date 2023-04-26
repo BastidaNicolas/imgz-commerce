@@ -16,7 +16,6 @@ export default function CardSm({data}:any) {
                   5vw"
           fill
           loading="lazy"
-          placeholder="blur"
         ></Image>
       </div>
     </div>
