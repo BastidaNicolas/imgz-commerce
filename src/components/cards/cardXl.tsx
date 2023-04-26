@@ -7,7 +7,16 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
       <>
         {value.map((product) => (
           <div key={product.id} className="relative mr-7 lg:mr-0 ml-0 lg:ml-8 w-[6.098rem] md:w-[7.313rem] h-[7.661rem] md:h-[9.188rem]">
-            <Image className="object-cover" src={product.imageUrl} alt={"image of " + product.title} fill loading="lazy"></Image>
+            <Image
+              className="object-cover"
+              src={product.imageUrl}
+              alt={"image of " + product.title}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 10vw,
+                  (max-width: 1200px) 20vw,
+                  40vw"
+            ></Image>
           </div>
         ))}
       </>
@@ -28,9 +37,9 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
             className="object-cover"
             src={photoOfTheDay.imageUrl}
             alt={"image of " + photoOfTheDay.title}
-            sizes="(max-width: 768px) 33vw,
+            sizes="(max-width: 768px) 30vw,
                   (max-width: 1200px) 50vw,
-                  60vw"
+                  70vw"
             fill
             priority
           ></Image>
