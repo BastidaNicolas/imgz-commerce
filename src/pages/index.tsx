@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { FiltersOpenContext } from "@/context/context";
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
+import cookie from "js-cookie";
 
 import CardMd from "@/components/cards/cardMd";
 import CardXl from "@/components/cards/cardXl";
@@ -35,6 +36,10 @@ export default function Home() {
       { shallow: true },
     );
   };
+
+  useEffect(() => {
+    
+  },[])
 
   useEffect(() => {
     if (router.isReady) {
