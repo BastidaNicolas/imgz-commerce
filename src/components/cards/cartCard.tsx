@@ -1,9 +1,18 @@
+import cookie from "js-cookie";
+
 import ClearBtn from "../buttons/clearBtn";
 import ExitBtn from "../buttons/exitBtn";
 import PayBtn from "../buttons/payBtn";
 import CardSm from "./cardSm";
+import { useEffect, useState } from "react";
 
-export default function CartCard({ isOpen, setIsOpen }: any) {
+export default function CartCard({ isOpen, setIsOpen, cartItems, setTotalCartItem }: any) {
+  const handleClearCart = (value: string) => {
+    setIsOpen(false);
+    cookie.set("imgz-cart", value);
+    setTotalCartItem(0);
+  };
+
   return (
     <div
       className={`${
@@ -13,18 +22,22 @@ export default function CartCard({ isOpen, setIsOpen }: any) {
       <div className="mb-6 w-full flex justify-end">
         <ExitBtn setIsOpen={setIsOpen}></ExitBtn>
       </div>
-      <div className=" border-b mb-6 w-full overflow-y-auto">
-        <CardSm></CardSm>
-        <CardSm></CardSm>
-        <CardSm></CardSm>
-        <CardSm></CardSm>
-        <CardSm></CardSm>
-      </div>
-      <div className="w-full flex flex-col md:flex-row">
-        <ClearBtn></ClearBtn>
-        <div className="mb-1 md:mx-2.5"></div>
-        <PayBtn></PayBtn>
-      </div>
+      {cartItems.length !== 0 ? (
+        <>
+          <div className=" border-b mb-6 w-full overflow-y-auto">
+            {cartItems.map((item: any) => (
+              <CardSm key={item.id} data={item} />
+            ))}
+          </div>
+          <div className="w-full flex flex-col md:flex-row">
+            <ClearBtn setState={(value: string) => handleClearCart(value)} value={""}></ClearBtn>
+            <div className="mb-1 md:mx-2.5"></div>
+            <PayBtn></PayBtn>
+          </div>
+        </>
+      ) : (
+        <div className="text-center p-10">Cart is empty! :(</div>
+      )}
     </div>
   );
 }
