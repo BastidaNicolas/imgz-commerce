@@ -13,8 +13,8 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
               alt={"image of " + product.title}
               fill
               loading="lazy"
-              sizes="(max-width: 768px) 10vw,
-                  20vw"
+              sizes="(max-width: 768px) 20vw,
+                  10vw"
             ></Image>
           </div>
         ))}
@@ -36,7 +36,7 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
             className="object-cover"
             src={photoOfTheDay.imageUrl}
             alt={"image of " + photoOfTheDay.title}
-            sizes="(max-width: 768px) 30vw,
+            sizes="(max-width: 768px) 90vw,
                   (max-width: 1200px) 50vw,
                   65vw"
             fill

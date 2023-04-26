@@ -15,7 +15,7 @@ export default function CardMd({product}:any) {
           fill
           sizes="(max-width: 768px) 90vw,
                   (max-width: 1200px) 50vw,
-                  30vw"
+                  20vw"
           loading="lazy"
         ></Image>
         <div className="hidden group-hover:block absolute w-full bottom-0" >
