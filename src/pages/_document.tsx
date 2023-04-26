@@ -3,9 +3,9 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <title>Buy aluminum backed photo printings in this shop</title>
       <Head>
         <title>Buy aluminum backed photo printings in this shop</title>
+        <meta property="og:title" content="Buy aluminum backed photo printings in this shop" key="title" />
 
         <meta
           name="description"
