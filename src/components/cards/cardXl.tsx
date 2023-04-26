@@ -14,8 +14,7 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
               fill
               loading="lazy"
               sizes="(max-width: 768px) 10vw,
-                  (max-width: 1200px) 20vw,
-                  40vw"
+                  20vw"
             ></Image>
           </div>
         ))}
@@ -39,7 +38,7 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
             alt={"image of " + photoOfTheDay.title}
             sizes="(max-width: 768px) 30vw,
                   (max-width: 1200px) 50vw,
-                  70vw"
+                  65vw"
             fill
             priority
           ></Image>

@@ -13,6 +13,10 @@ export default function CardMd({product}:any) {
           src={product.imageUrl}
           alt={product.title + ' image'}
           fill
+          sizes="(max-width: 768px) 90vw,
+                  (max-width: 1200px) 50vw,
+                  30vw"
+          loading="lazy"
         ></Image>
         <div className="hidden group-hover:block absolute w-full bottom-0" >
           <AddBtn data={product} />

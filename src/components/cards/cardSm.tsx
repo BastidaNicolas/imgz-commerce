@@ -12,6 +12,8 @@ export default function CardSm({data}:any) {
           className="object-cover"
           src={data.imageUrl}
           alt={'image of ' + data.title}
+          sizes="(max-width: 768px) 5vw,
+                  10vw"
           fill
         ></Image>
       </div>
