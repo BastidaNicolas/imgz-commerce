@@ -25,9 +25,6 @@ const priceRange = {
   ],
 };
 
-//HAVE TO IMPLEMENT SOMETHING THAT WOULD MAKE CALLS AUTAMATICALY IF IN >= MD WIDTH SCREEN
-//AND HAVE TO CLICK SAVEBTN ON SMALLER SCREENS
-
 export default function FilterCard() {
   const { filterMenuOpen, setFilterMenuOpen }: any = useContext(FiltersOpenContext);
 

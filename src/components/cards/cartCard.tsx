@@ -4,7 +4,6 @@ import ClearBtn from "../buttons/clearBtn";
 import ExitBtn from "../buttons/exitBtn";
 import PayBtn from "../buttons/payBtn";
 import CardSm from "./cardSm";
-import { useEffect, useState } from "react";
 
 export default function CartCard({ isOpen, setIsOpen, cartItems, setTotalCartItem }: any) {
   const handleClearCart = (value: string) => {

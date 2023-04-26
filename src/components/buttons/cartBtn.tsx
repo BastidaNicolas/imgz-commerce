@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
+import { TotalCartItemsContext } from "@/context/context";
 import cookie from 'js-cookie';
 
 import CartCard from "../cards/cartCard";
-import { TotalCartItemsContext } from "@/context/context";
 
 export default function CartBtn() {
 
@@ -11,10 +11,6 @@ export default function CartBtn() {
   const [isOpen, setIsOpen] = useState(false)
   const [cartItems, setCartItems] = useState([]);
   const {totalCartItem, setTotalCartItem}:any = useContext(TotalCartItemsContext)
-
-  const handelCartItemCount = () => {
-    // const cart
-  }
 
   useEffect(() => {
     if(cartCookie){
