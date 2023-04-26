@@ -15,7 +15,6 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
               loading="lazy"
               sizes="(max-width: 768px) 20vw,
                   10vw"
-              placeholder="blur"
             ></Image>
           </div>
         ))}
