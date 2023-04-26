@@ -28,9 +28,9 @@ export default function CardXl({ photoOfTheDay, peopleAlsoBuy }: any) {
             className="object-cover"
             src={photoOfTheDay.imageUrl}
             alt={"image of " + photoOfTheDay.title}
-            sizes="(max-width: 768px) 100vw,
+            sizes="(max-width: 768px) 33vw,
                   (max-width: 1200px) 50vw,
-                  33vw"
+                  60vw"
             fill
             priority
           ></Image>
