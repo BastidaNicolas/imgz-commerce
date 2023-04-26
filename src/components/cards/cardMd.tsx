@@ -15,7 +15,7 @@ export default function CardMd({product}:any) {
           fill
         ></Image>
         <div className="hidden group-hover:block absolute w-full bottom-0" >
-          <AddBtn></AddBtn>
+          <AddBtn data={product} />
         </div>
       </div>
       <div className="text-xl text-neutral-600 font-bold mb-1 capitalize">{product.category}</div>

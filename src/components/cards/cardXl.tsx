@@ -1,6 +1,5 @@
 import Image from "next/image";
 import AddBtn from "../buttons/addBtn";
-import { forEachChild } from "typescript";
 
 export default function CardXl({photoOfTheDay, peopleAlsoBuy}:any) {
 
@@ -27,7 +26,7 @@ export default function CardXl({photoOfTheDay, peopleAlsoBuy}:any) {
       <div className="mb-11 grid grid-cols-10  gap-y-7">
         <div className="text-3xl font-bold truncate col-start-1 col-end-11 lg:col-start-1 lg:col-end-9 row-span-1 capitalize" >{photoOfTheDay.title}</div>
         <div className="w-full bottom-0 col-start-1 col-end-11 lg:col-start-9 lg:col-end-11 row-span-1 row-start-3 row-end-4 lg:row-start-1 lg:row-end-2">
-          <AddBtn></AddBtn>
+          <AddBtn data={photoOfTheDay} />
         </div>
         <div className="relative h-[14.938rem] md:h-[34.563rem] w-full col-span-10 row-span-2 row-start-2 row-end-3 lg:row-start-2 lg:row-end-3">
           <Image
