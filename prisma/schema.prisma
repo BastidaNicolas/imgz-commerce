@@ -15,6 +15,7 @@ model Product {
   imageUrl     String   @map("image_url")
   category     String?
   price        Int
+  priceId      String   @map("price_id")
   description  String   @db.VarChar(800)
   width        Int
   height       Int

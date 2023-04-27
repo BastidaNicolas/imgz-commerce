@@ -1,8 +1,11 @@
 import { z } from "zod";
 import { procedure, router } from "../trpc";
 import { PrismaClient } from "@prisma/client";
+import Stripe from "stripe";
 
 const prisma = new PrismaClient();
+const stripeKey = process.env.STRIPE_SECRET_KEY || '';
+const stripe = new Stripe(stripeKey, {apiVersion:"2022-11-15"});
 
 type Product = {
   id: number | null;
@@ -10,6 +13,7 @@ type Product = {
   imageUrl: string | null;
   category: string | null;
   price: number | null;
+  priceId: string | null;
   description: string | null;
   width: number | null;
   height: number | null;
@@ -24,6 +28,7 @@ const productDTO = (product: Product) => {
     imageUrl: product.imageUrl,
     category: product.category,
     price: product.price,
+    priceId: product.priceId,
     description: product.description,
     details: {
       size: {

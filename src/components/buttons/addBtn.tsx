@@ -9,12 +9,12 @@ export default function AddBtn({data}:any ) {
   const handleCartCookie = (data:any) => {
     const cartCookie = cookie.get('imgz-cart')
     if(cartCookie){
-      const arrary = JSON.stringify([...JSON.parse(cartCookie), {"title":data.title, "price":data.price, "imageUrl": data.imageUrl, "id": data.id}])
+      const arrary = JSON.stringify([...JSON.parse(cartCookie), {"title":data.title, "price":data.price, "priceId": data.priceId, "imageUrl": data.imageUrl, "id": data.id}])
       cookie.set('imgz-cart', arrary)
       setTotalCartItem(totalCartItem + 1)
       return
     }
-    const arrary = JSON.stringify([{"title":data.title, "price":data.price, "imageUrl": data.imageUrl, "id": data.id}])
+    const arrary = JSON.stringify([{"title":data.title, "price":data.price, "priceId": data.priceId, "imageUrl": data.imageUrl, "id": data.id}])
     cookie.set('imgz-cart', arrary)
     setTotalCartItem(totalCartItem + 1)
     return
