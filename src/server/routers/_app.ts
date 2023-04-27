@@ -1,11 +1,12 @@
-import { z } from "zod";
+import { any, z } from "zod";
 import { procedure, router } from "../trpc";
 import { PrismaClient } from "@prisma/client";
 import Stripe from "stripe";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
-const stripeKey = process.env.STRIPE_SECRET_KEY || '';
-const stripe = new Stripe(stripeKey, {apiVersion:"2022-11-15"});
+const stripeKey = process.env.STRIPE_SECRET_KEY || "";
+const stripe = new Stripe(stripeKey, { apiVersion: "2022-11-15" });
 
 type Product = {
   id: number | null;
@@ -40,6 +41,14 @@ const productDTO = (product: Product) => {
     isBestSeller: product.isBestSeller,
   };
 };
+
+const cartProductSchema = z.object({
+  title: z.string(),
+  price: z.number(),
+  priceId: z.string(),
+  imageUrl: z.string(),
+  id: z.number(),
+});
 
 export const appRouter = router({
   getProducts: procedure
@@ -100,10 +109,26 @@ export const appRouter = router({
     });
 
     const products = data.products.map(productDTO);
-
     return {
       products,
     };
+  }),
+  handleCheckoutSession: procedure.input(cartProductSchema.array()).mutation(({ input }) => {
+    const lineItems:any[] = [];
+    
+    input.map((item) => {
+      lineItems.push({
+        price: item.priceId,
+        quantity: 1,
+      });
+    });
+
+    return stripe.checkout.sessions.create({
+      line_items: lineItems,
+      mode: "payment",
+      success_url: `https://nicolas.bastida.dev/`,
+      cancel_url: `https://www.google.com/`,
+    });
   }),
 });
 
