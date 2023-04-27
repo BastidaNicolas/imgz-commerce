@@ -1,8 +1,7 @@
-import { any, z } from "zod";
+import { z } from "zod";
 import { procedure, router } from "../trpc";
 import { PrismaClient } from "@prisma/client";
 import Stripe from "stripe";
-import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 const stripeKey = process.env.STRIPE_SECRET_KEY || "";
@@ -126,8 +125,8 @@ export const appRouter = router({
     return stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url: `https://nicolas.bastida.dev/`,
-      cancel_url: `https://www.google.com/`,
+      success_url: `${process.env.STORE_FRONT_URL}/success`,
+      cancel_url: process.env.STORE_FRONT_URL,
     });
   }),
 });
