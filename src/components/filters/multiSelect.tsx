@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 export default function MultiSelect({ option, selectedFilters, setFilerRoute }: any) {
   const router = useRouter();
-  const {page, filterBy } = router.query;
+  const { filterBy } = router.query;
 
   const checkIfSelected = (value: string) => {
     if (Array.isArray(filterBy)) {

@@ -24,8 +24,8 @@ export default function CartCard({ isOpen, setIsOpen, cartItems, setTotalCartIte
       {cartItems.length !== 0 ? (
         <>
           <div className=" border-b mb-6 w-full overflow-y-auto">
-            {cartItems.map((item: any) => (
-              <CardSm key={item.id} data={item} />
+            {cartItems.map((item: any, index:number) => (
+              <CardSm key={item.id + index} data={item} />
             ))}
           </div>
           <div className="w-full flex flex-col md:flex-row">
