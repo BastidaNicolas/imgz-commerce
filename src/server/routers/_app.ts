@@ -63,7 +63,6 @@ export const appRouter = router({
       }),
     )
     .query(async ({ input }) => {
-      console.log("min: ", input.min, "max: ", input.max);
       const products = (
         await prisma.product.findMany({
           take: input.amount,
