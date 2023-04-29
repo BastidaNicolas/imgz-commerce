@@ -81,12 +81,12 @@ export default function Home() {
       <Head>
         {/* <meta property="og:image" content="https://i.imgur.com/ECOI0o4.jpg" />
         <meta property="og:image:type" content="image/jpg" /> */}
-
+{/* 
         <meta property="og:title" content="Aluminum Backed Photo Impresions Shop"/>
         <meta property="og:type" content="Online Shop" />
-        <meta property="og:image" content="https://i.imgur.com/3g1tJ8F.png"/>
+        <meta property="og:image" content="https://i.imgur.com/3g1tJ8F.png"/> */}
         {/* <meta property="og:url" content="https://imgz-commerce-git-api-integration-bastidanicolas.vercel.app/?page=1&orderBy=price&ascending=desc"/> */}
-        <meta name="twitter:card" content="summary_large_image"></meta>
+        {/* <meta name="twitter:card" content="summary_large_image"></meta> */}
 
       </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
