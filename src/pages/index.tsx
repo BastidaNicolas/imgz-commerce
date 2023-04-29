@@ -80,7 +80,7 @@ export default function Home() {
     <>
       <Head>
         <title>Aluminum Backed Photo Impresions Shop</title>
-        <meta property="og:image" content="https://i.imgur.com/3lwkZdD.png" />
+        <meta property="og:image" content="https://i.imgur.com/PgGVOYA.jpg" />
         <meta property="og:image:type" content="image/png" />
       </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
