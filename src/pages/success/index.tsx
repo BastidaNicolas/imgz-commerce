@@ -9,7 +9,7 @@ export default function Success() {
     }, []);
 
   return (
-    <div className="flex flex-col items-center w-full h-screen justify-center text-3xl font-bold">
+    <div className="transition-opacity text-center flex flex-col items-center w-full h-screen justify-center text-3xl font-bold">
       Thanks for shopping with us!
       <Link className="text-base underline font-normal mt-5" href={"/"}>
         Go back to the shop {">"}
