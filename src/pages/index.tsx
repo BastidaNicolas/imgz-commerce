@@ -84,8 +84,8 @@ export default function Home() {
 
         <meta property="og:title" content="Aluminum Backed Photo Impresions Shop"/>
         <meta property="og:type" content="Online Shop" />
-        <meta property="og:image" content="https://i.imgur.com/ECOI0o4.jpg"/>
-        <meta property="og:url" content="https://imgz-commerce-git-api-integration-bastidanicolas.vercel.app/?page=1&orderBy=price&ascending=desc"/>
+        <meta property="og:image" content="https://i.imgur.com/3g1tJ8F.png"/>
+        {/* <meta property="og:url" content="https://imgz-commerce-git-api-integration-bastidanicolas.vercel.app/?page=1&orderBy=price&ascending=desc"/> */}
         <meta name="twitter:card" content="summary_large_image"></meta>
 
       </Head>
