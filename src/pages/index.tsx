@@ -14,7 +14,6 @@ import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
 import CardXlLoader from "@/components/loaders/cardXlLoader";
 import CardMdLoader from "@/components/loaders/cardMdLoader";
-import Head from "next/head";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const ITEMS_PER_PAGE = 6;
@@ -77,18 +76,6 @@ export default function Home() {
   }, [router]);
 
   return (
-    <>
-      <Head>
-        {/* <meta property="og:image" content="https://i.imgur.com/ECOI0o4.jpg" />
-        <meta property="og:image:type" content="image/jpg" /> */}
-{/* 
-        <meta property="og:title" content="Aluminum Backed Photo Impresions Shop"/>
-        <meta property="og:type" content="Online Shop" />
-        <meta property="og:image" content="https://i.imgur.com/3g1tJ8F.png"/> */}
-        {/* <meta property="og:url" content="https://imgz-commerce-git-api-integration-bastidanicolas.vercel.app/?page=1&orderBy=price&ascending=desc"/> */}
-        {/* <meta name="twitter:card" content="summary_large_image"></meta> */}
-
-      </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
         <TotalCartItemsContext.Provider value={totalCartItemMemo}>
           <Header></Header>
@@ -123,6 +110,5 @@ export default function Home() {
           </FiltersOpenContext.Provider>
         </TotalCartItemsContext.Provider>
       </main>
-    </>
   );
 }
