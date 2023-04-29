@@ -1,3 +1,8 @@
+# IMGz Shop
+
+![imgz-shop](https://user-images.githubusercontent.com/74965310/235323849-6b03e2ab-d270-4bcb-865e-9bd20184414d.png)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
