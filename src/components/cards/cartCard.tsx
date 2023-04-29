@@ -51,7 +51,7 @@ export default function CartCard({ isOpen, setIsOpen, cartItems, setTotalCartIte
           </div>
         </>
       ) : (
-        <div className="text-center p-10">Cart is empty! :(</div>
+        <div className="text-center pt-10 pb-14">Cart is empty! :(</div>
       )}
     </div>
   );

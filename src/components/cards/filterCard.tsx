@@ -119,8 +119,8 @@ export default function FilterCard() {
     <>
       <div
         className={`${
-          filterMenuOpen ? "block" : "hidden"
-        } w-full fixed left-0 bottom-0  lg:relative lg:max-w-[17rem] lg:mr-12 z-40 bg-white pb-32 lg:pb-0 pt-7 lg:pt-0 px-10 lg:px-0 h-[40rem] max-h-full lg:h-fit`}
+          filterMenuOpen ? "block" : "translate-y-[85vh]"
+        } w-full fixed left-0 bottom-0 duration-300 lg:relative lg:max-w-[17rem] lg:mr-12 z-40 bg-white pb-32 lg:pb-0 pt-7 lg:pt-0 px-10 lg:px-0 h-[40rem] max-h-full lg:h-fit`}
       >
         <div className="lg:hidden flex items-center justify-between">
           <div className=" text-3xl font-bold">Filter</div>
@@ -138,8 +138,8 @@ export default function FilterCard() {
       </div>
       <div
         className={`${
-          filterMenuOpen ? "flex" : "hidden"
-        } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
+          filterMenuOpen ? "flex" : "flex translate-y-52"
+        } lg:hidden w-full fixed left-0 bottom-0 delay-75 duration-300 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
       >
         <ClearBtn setState={setFilerRoute} value={{ page: "1", orderBy: "price", ascending: "desc" }}></ClearBtn>
         <div className="mx-2.5"></div>

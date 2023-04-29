@@ -2,7 +2,7 @@ import CartBtn from "./buttons/cartBtn";
 
 export default function Header() {
   return (
-    <div className="relative flex items-center justify-between w-full py-7 px-8 md:px-0 md:pt-9 md:pb-8 border-b-4 border-neutral-300 mb-14 z-20">
+    <div className="relative flex items-center justify-between w-full py-4 sm:py-7 px-8 md:px-0 md:pt-9 md:pb-8 border-b-4 border-neutral-300 mb-6 sm:mb-10 md:mb-14 z-20">
       <div className="">
         <svg
           width="80"
