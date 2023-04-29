@@ -1,5 +1,5 @@
 import { Archivo } from "next/font/google";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FiltersOpenContext, TotalCartItemsContext } from "@/context/context";
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
@@ -25,13 +25,15 @@ export default function Home() {
   const [totalCartItem, setTotalCartItem] = useState(0);
   const totalCartItemMemo: any = useMemo(() => ({ totalCartItem, setTotalCartItem }), [totalCartItem]);
 
+  const scrollToRef = useRef<HTMLDivElement>(null);
+
   const router = useRouter();
   const { data, isLoading } = trpc.getProducts.useQuery({
     page: Number(router.query.page),
     amount: ITEMS_PER_PAGE,
-    filters: router.query.filterBy ? router.query.filterBy as string[]: undefined,
-    min: router.query.min ? Number(router.query.min):undefined ,
-    max: router.query.max ? Number(router.query.max):undefined,
+    filters: router.query.filterBy ? (router.query.filterBy as string[]) : undefined,
+    min: router.query.min ? Number(router.query.min) : undefined,
+    max: router.query.max ? Number(router.query.max) : undefined,
     orderBy: router.query.orderBy as string,
     ascending: router.query.ascending as string,
   });
@@ -47,6 +49,14 @@ export default function Home() {
       undefined,
       { shallow: true },
     );
+  };
+
+  const handleScroll = () => {
+    // if (scrollToRef.current) {
+      scrollToRef.current!.scrollIntoView({
+        block: "start",
+      });
+    // }
   };
 
   useEffect(() => {
@@ -80,7 +90,7 @@ export default function Home() {
             <CardXl photoOfTheDay={photoOfTheDay.data?.product} peopleAlsoBuy={peopleAlsoBuy.data?.products} />
           )}
           <FiltersOpenContext.Provider value={filterMenuOpenValue}>
-            <section className="w-full">
+            <section className="w-full" ref={scrollToRef}>
               <div className="flex items-center justify-between mb-11">
                 <div className="flex items-center flex-flow truncate">
                   <div className="font-bold text-lg md:text-3xl">Photography</div>
@@ -98,7 +108,7 @@ export default function Home() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-12 mb-11">
                     {isLoading ? <CardMdLoader /> : data?.products.map((product: any) => <CardMd key={product.id} product={product} />)}
                   </div>
-                  <PageFilter pages={data?.totalPages}></PageFilter>
+                  <PageFilter handleScroll={handleScroll} pages={data?.totalPages}></PageFilter>
                 </div>
               </div>
             </section>

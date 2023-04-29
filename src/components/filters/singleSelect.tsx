@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 export default function SingleSelect({ option, routestate, setFilerRoute }: any) {
   const router = useRouter();
-  const { filterBy, min, max } = router.query;
+  const { min, max } = router.query;
 
   const checkIfSelected = (value: any) => {
     if (min == value[0] && max == value[1]) {
@@ -14,8 +14,6 @@ export default function SingleSelect({ option, routestate, setFilerRoute }: any)
     setFilerRoute({ ...router.query, page: "1", min: value[0], max: value[1] });
     return;
   };
-
-  console.log(option.options);
 
   return (
     <div className="w-full">

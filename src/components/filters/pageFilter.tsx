@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function PageFilter({ pages }: any) {
+export default function PageFilter({ pages, handleScroll }: any) {
   const router = useRouter();
 
   const [page, setPage] = useState({ ...router.query, page: "1" });
 
   const changePage = (value: any) => {
+    handleScroll()
     router.push(
       {
         pathname: "/",
@@ -15,6 +16,7 @@ export default function PageFilter({ pages }: any) {
       undefined,
       { shallow: true },
     );
+    return
   };
 
   const generatePages = (totalPages: any) => {
