@@ -1,18 +1,27 @@
-
 interface CheckBtnProps {
   value: string;
   name: string;
-  filter: Array<string>;
-  fnc:any
+  filter: Array<string | number>;
+  fnc: any;
 }
 
-export default function CheckBtn({
-  name,
-  value,
-  filter,
-  fnc
-}: CheckBtnProps) {
+function arraysMatch(arr1: number[], arr2: number[]) {
+  // Check if arrays have the same length
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
 
+  // Compare each element at the corresponding index
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+export default function CheckBtn({ name, value, filter, fnc }: CheckBtnProps) {
   return (
     <div className="flex items-center mb-8">
       <input
@@ -21,7 +30,7 @@ export default function CheckBtn({
         name={name}
         id={name}
         value={value}
-        checked={filter?.includes(value)}
+        checked={Array.isArray(value) ? arraysMatch(value, filter as number[]) : filter?.includes(value)}
         onChange={() => fnc(value)}
         readOnly
       />

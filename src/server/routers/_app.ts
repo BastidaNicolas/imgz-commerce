@@ -56,11 +56,14 @@ export const appRouter = router({
         page: z.number(),
         amount: z.number(),
         filters: z.optional(z.union([z.array(z.string()), z.string()])),
+        min: z.optional(z.number()),
+        max: z.optional(z.number()),
         orderBy: z.string(),
         ascending: z.string(),
       }),
     )
     .query(async ({ input }) => {
+      console.log("min: ", input.min, "max: ", input.max);
       const products = (
         await prisma.product.findMany({
           take: input.amount,
@@ -72,6 +75,21 @@ export const appRouter = router({
             category: {
               in: input.filters,
             },
+            AND: [
+              {
+                price: {
+                  gt: input.min, // greater than 100
+                },
+              },
+              {
+                price:
+                  input.max !== 0
+                    ? {
+                        lt: input.max,
+                      }
+                    : {},
+              },
+            ],
           },
         })
       ).map(productDTO);
@@ -80,6 +98,21 @@ export const appRouter = router({
           category: {
             in: input.filters,
           },
+          AND: [
+            {
+              price: {
+                gt: input.min, // greater than 100
+              },
+            },
+            {
+              price:
+                input.max !== 0
+                  ? {
+                      lt: input.max,
+                    }
+                  : {},
+            },
+          ],
         },
       });
 
@@ -113,8 +146,8 @@ export const appRouter = router({
     };
   }),
   handleCheckoutSession: procedure.input(cartProductSchema.array()).mutation(({ input }) => {
-    const lineItems:any[] = [];
-    
+    const lineItems: any[] = [];
+
     input.map((item) => {
       lineItems.push({
         price: item.priceId,

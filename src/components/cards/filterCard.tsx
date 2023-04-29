@@ -19,9 +19,9 @@ const category = {
 const priceRange = {
   name: "price range",
   options: [
-    { value: "cheap", name: "cheap" },
-    { value: "expensive", name: "expensive" },
-    { value: "alright", name: "alright" },
+    { value: [0, 50], name: "< 50" },
+    { value: [50, 100], name: "50 - 100" },
+    { value: [100, 0], name: "> 100" },
   ],
 };
 
@@ -29,10 +29,13 @@ export default function FilterCard() {
   const { filterMenuOpen, setFilterMenuOpen }: any = useContext(FiltersOpenContext);
 
   const router = useRouter();
-  const { filterBy } = router.query;
+  const { filterBy, min, max } = router.query;
   const [selectedFilters, setSelectedFilters] = useState({
     ...router.query,
     filterBy: [""],
+  });
+  const [minState, setMinState] = useState({
+    ...router.query,
   });
 
   const setFilerRoute = (value: any) => {
@@ -84,6 +87,34 @@ export default function FilterCard() {
     });
   }, [filterBy]);
 
+  useEffect(() => {
+    if (!min) {
+      setMinState({
+        ...router.query,
+        min: undefined,
+      });
+      return;
+    }
+    setMinState({
+      ...router.query,
+      min: min,
+    });
+  }, [min]);
+
+  useEffect(() => {
+    if (!max) {
+      setMinState({
+        ...router.query,
+        max: undefined,
+      });
+      return;
+    }
+    setMinState({
+      ...router.query,
+      max: max,
+    });
+  }, [max]);
+
   return (
     <>
       <div
@@ -101,7 +132,7 @@ export default function FilterCard() {
             </div>
             <MultiSelect option={category} selectedFilters={selectedFilters} setFilerRoute={setFilerRoute}></MultiSelect>
             <div className="border-b border-neutral-300 mb-8"></div>
-            <SingleSelect option={priceRange} selectedFilters={selectedFilters} setFilerRoute={setFilerRoute}></SingleSelect>
+            <SingleSelect option={priceRange} routestate={minState} setFilerRoute={setFilerRoute}></SingleSelect>
           </div>
         </div>
       </div>
@@ -110,7 +141,7 @@ export default function FilterCard() {
           filterMenuOpen ? "flex" : "hidden"
         } lg:hidden w-full fixed left-0 bottom-0 z-50 pt-6 pb-8 px-5 border-t-4 border-neutral-300 bg-white`}
       >
-        <ClearBtn setState={setFilerRoute} value={{ page: '1', orderBy: "price", ascending: 'desc' }}></ClearBtn>
+        <ClearBtn setState={setFilerRoute} value={{ page: "1", orderBy: "price", ascending: "desc" }}></ClearBtn>
         <div className="mx-2.5"></div>
         <SaveBtn handleFunc={() => setFilterMenuOpen(false)}></SaveBtn>
       </div>

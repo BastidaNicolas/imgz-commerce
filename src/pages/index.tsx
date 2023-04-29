@@ -29,7 +29,9 @@ export default function Home() {
   const { data, isLoading } = trpc.getProducts.useQuery({
     page: Number(router.query.page),
     amount: ITEMS_PER_PAGE,
-    filters: router.query.filterBy as string[],
+    filters: router.query.filterBy ? router.query.filterBy as string[]: undefined,
+    min: router.query.min ? Number(router.query.min):undefined ,
+    max: router.query.max ? Number(router.query.max):undefined,
     orderBy: router.query.orderBy as string,
     ascending: router.query.ascending as string,
   });
