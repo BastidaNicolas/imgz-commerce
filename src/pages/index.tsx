@@ -80,8 +80,8 @@ export default function Home() {
     <>
       <Head>
         <title>Aluminum Backed Photo Impresions Shop</title>
-        <meta property="og:image" content="https://i.imgur.com/PgGVOYA.jpg" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="https://i.imgur.com/ECOI0o4.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
       </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
         <TotalCartItemsContext.Provider value={totalCartItemMemo}>
