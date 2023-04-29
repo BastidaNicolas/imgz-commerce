@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>buy aluminum backed photo impresions in this shop</title>
+        <title>Aluminum Backed Photo Impresions Shop</title>
       </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
         <TotalCartItemsContext.Provider value={totalCartItemMemo}>
