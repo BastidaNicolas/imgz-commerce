@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function PageFilter({ option }: any) {
+export default function PageFilter({ pages, handleScroll }: any) {
   const router = useRouter();
 
   const [page, setPage] = useState({ ...router.query, page: "1" });
 
   const changePage = (value: any) => {
+    handleScroll()
     router.push(
       {
         pathname: "/",
@@ -15,6 +16,23 @@ export default function PageFilter({ option }: any) {
       undefined,
       { shallow: true },
     );
+    return
+  };
+
+  const generatePages = (totalPages: any) => {
+    const pages = [];
+    for (let onPage = 1; onPage <= totalPages; onPage++) {
+      pages.push(
+        <button
+          key={onPage}
+          className={Number(page.page) === onPage ? "text-3xl font-bold text-black mr-3.5 md:mr-5" : "text-3xl text-neutral-400 mr-3.5 md:mr-5"}
+          onClick={() => changePage({ ...router.query, page: onPage })}
+        >
+          {onPage}
+        </button>,
+      );
+    }
+    return <>{pages}</>;
   };
 
   useEffect(() => {
@@ -26,6 +44,7 @@ export default function PageFilter({ option }: any) {
       <button
         className={page.page === "1" ? "hidden" : ""}
         onClick={() => changePage({ ...router.query, page: Number(router.query.page) - 1 })}
+        aria-label="go to previous page"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_768_2)">
@@ -38,52 +57,11 @@ export default function PageFilter({ option }: any) {
           </defs>
         </svg>
       </button>
-      <div className="flex items-center mx-3.5 md:mx-5 overflow-x-auto">
-        {/* MAKE MARGIN NOT APEAR IF IT'S THE LAST NUMBER, ALSO ADJUST COLOR AND WEIGHT BASED ON IF IT IS THE CURRENT PAGE*/}
-        <button
-          className={
-            page.page === "1"
-              ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
-              : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
-          }
-          onClick={() => changePage({ ...router.query, page: 1 })}
-        >
-          1
-        </button>
-        <button
-          className={
-            page.page === "2"
-              ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
-              : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
-          }
-          onClick={() => changePage({ ...router.query, page: 2 })}
-        >
-          2
-        </button>
-        <button
-          className={
-            page.page === "3"
-              ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
-              : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
-          }
-          onClick={() => changePage({ ...router.query, page: 3 })}
-        >
-          3
-        </button>
-        <button
-          className={
-            page.page === "4"
-              ? "text-3xl font-bold text-black mr-3.5 md:mr-5"
-              : "text-3xl text-neutral-400 mr-3.5 md:mr-5"
-          }
-          onClick={() => changePage({ ...router.query, page: 4 })}
-        >
-          4
-        </button>
-      </div>
+      <div className="flex items-center mx-3.5 md:mx-5 overflow-x-auto">{generatePages(pages)}</div>
       <button
-        className={page.page === "4" ? "hidden" : ""}
+        className={Number(page.page) === pages ? "hidden" : ""}
         onClick={() => changePage({ ...router.query, page: Number(router.query.page) + 1 })}
+        aria-label="go to next page"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_768_2)">

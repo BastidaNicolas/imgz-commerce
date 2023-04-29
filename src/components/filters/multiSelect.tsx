@@ -10,19 +10,20 @@ export default function MultiSelect({ option, selectedFilters, setFilerRoute }: 
       if (filterBy.includes(value)) {
         setFilerRoute({
           ...router.query,
+          page: '1',
           filterBy: filterBy.filter((item) => item !== value),
         });
         return;
       }
-      setFilerRoute({ ...router.query, filterBy: [...selectedFilters.filterBy, value] });
+      setFilerRoute({ ...router.query, page: '1', filterBy: [...selectedFilters.filterBy, value] });
       return;
     }
     if (filterBy === value) {
-      setFilerRoute({ ...router.query, filterBy: [] });
+      setFilerRoute({ ...router.query, page: '1', filterBy: [] });
       return;
     }
     const newArray = filterBy ? [filterBy, value] : value;
-    setFilerRoute({ ...router.query, filterBy: newArray });
+    setFilerRoute({ ...router.query, page: '1', filterBy: newArray });
     return;
   };
 

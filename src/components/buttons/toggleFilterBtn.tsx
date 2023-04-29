@@ -6,7 +6,7 @@ export default function ToggleFilterBtn() {
   const {filterMenuOpen, setFilterMenuOpen}:any = useContext(FiltersOpenContext);
 
   return (
-    <button className="block lg:hidden" onClick={() => setFilterMenuOpen(!filterMenuOpen)}>
+    <button className="block lg:hidden" onClick={() => setFilterMenuOpen(!filterMenuOpen)} aria-label="open filter menu">
       <svg
         width="29"
         height="29"

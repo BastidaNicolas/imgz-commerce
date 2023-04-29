@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TotalCartItemsContext } from "@/context/context";
+import cookie from 'js-cookie';
+
 import CartCard from "../cards/cartCard";
 
 export default function CartBtn() {
 
+  const cartCookie = cookie.get('imgz-cart');
+
   const [isOpen, setIsOpen] = useState(false)
+  const [cartItems, setCartItems] = useState([]);
+  const {totalCartItem, setTotalCartItem}:any = useContext(TotalCartItemsContext)
+
+  useEffect(() => {
+    if(cartCookie){
+      const cookieData = JSON.parse(cartCookie)
+      setCartItems(cookieData);
+    }else{
+      setCartItems([])
+    }
+  },[cartCookie])
 
   return (
     <div className="group" >
-      <button onClick={() => setIsOpen(!isOpen)} >
+      <button onClick={() => setIsOpen(!isOpen)} aria-label={'open and close cart'}>
         <svg
           width="54"
           height="54"
@@ -31,9 +47,9 @@ export default function CartBtn() {
         </svg>
       </button>
       <div className="bg-black px-1 absolute right-6 md:-right-1 bottom-7 md:bottom-8 text-white text-xs">
-        0
+        {totalCartItem}
       </div>
-      <CartCard isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <CartCard isOpen={isOpen} setIsOpen={setIsOpen} cartItems={cartItems} setTotalCartItem={setTotalCartItem}/>
     </div>
   );
 }
