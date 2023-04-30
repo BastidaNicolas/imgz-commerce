@@ -14,6 +14,7 @@ import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
 import CardXlLoader from "@/components/loaders/cardXlLoader";
 import CardMdLoader from "@/components/loaders/cardMdLoader";
+import Head from "next/head";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const ITEMS_PER_PAGE = 6;
@@ -76,6 +77,10 @@ export default function Home() {
   }, [router]);
 
   return (
+    <>
+      <Head>
+        <title>IMGz - Aluminum Backed Photo Impresions Shop</title>
+      </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
         <TotalCartItemsContext.Provider value={totalCartItemMemo}>
           <Header></Header>
@@ -110,5 +115,6 @@ export default function Home() {
           </FiltersOpenContext.Provider>
         </TotalCartItemsContext.Provider>
       </main>
+    </>
   );
 }
