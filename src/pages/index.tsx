@@ -14,6 +14,7 @@ import OrderFilter from "@/components/filters/orderFilter";
 import PageFilter from "@/components/filters/pageFilter";
 import CardXlLoader from "@/components/loaders/cardXlLoader";
 import CardMdLoader from "@/components/loaders/cardMdLoader";
+import Head from "next/head";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const ITEMS_PER_PAGE = 6;
@@ -76,6 +77,21 @@ export default function Home() {
   }, [router]);
 
   return (
+    <>
+      <Head>
+        <title>IMGz - Aluminum Backed Photo Impresions Shop</title>
+        <meta
+          property="og:description"
+          content="Shop for stunning photo prints on aluminum backing at our online store. Browse our selection of high-quality photos and purchase your favorites. Free shipping on all orders"
+        />
+        <meta property="og:title" content="IMGz - Aluminum Backed Photo Impresions Shop" />
+        <meta property="og:image" content="https://i.imgur.com/4z4G3aq.png" />
+        <meta property="og:url" content="https://imgz-commerce.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta property="og:site_name" content="IMGz Shop" />
+        <meta name="twitter:image:alt" content="webshop preview" />
+      </Head>
       <main className={`${archivo.className} flex m-2 xl:m-auto max-w-7xl flex-col items-center`}>
         <TotalCartItemsContext.Provider value={totalCartItemMemo}>
           <Header></Header>
@@ -110,5 +126,6 @@ export default function Home() {
           </FiltersOpenContext.Provider>
         </TotalCartItemsContext.Provider>
       </main>
+    </>
   );
 }
