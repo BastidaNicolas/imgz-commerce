@@ -85,7 +85,7 @@ export default function Home() {
           content="Shop for stunning photo prints on aluminum backing at our online store. Browse our selection of high-quality photos and purchase your favorites. Free shipping on all orders"
         />
         <meta property="og:title" content="IMGz - Aluminum Backed Photo Impresions Shop" />
-        <meta property="og:image" content="https://i.imgur.com/4z4G3aq.png" />
+        <meta property="og:image" content="https://i.imgur.com/B7xrOlq.png" />
         <meta property="og:url" content="https://imgz-commerce.vercel.app/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image"></meta>
